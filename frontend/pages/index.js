@@ -1,24 +1,22 @@
 import Layout from "../components/Layout";
 import Link from 'next/link';
 
-const PostLink = props => {
-    return (
+const PostLink = (props) => (
         <li>
-            <Link href="{`/post?title=${props.title}`}">
-                <a>{props.title}</a>
+            <Link href="/p/[id]" as={`/p/${props.id}`}>
+                <a>{props.id}</a>
             </Link>
         </li>
     );
-}
 
-export default () => {
+export default function Blog () {
     return (
         <Layout>
             <h1>This the main title</h1>
             <ul>
-                <PostLink title="hello Next.js"/>
-                <PostLink title="Learning Next.js"/>
-                <PostLink title="Deploy apps with Zeit"/>
+                <PostLink id="hello-next"/>
+                <PostLink id="learning-next"/>
+                <PostLink id="deploying-next"/>
             </ul>
         </Layout>
     );
