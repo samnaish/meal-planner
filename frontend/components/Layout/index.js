@@ -1,14 +1,8 @@
-import Header from "../Header";
-
-const layoutStyle = {
-    margin: 20,
-    padding: 20,
-    border: '1px solid #DDD'
-};
+import Header from "../Navigation";
 
 export default (props) => {
     return (
-        <div style={layoutStyle}>
+        <div>
             <Header />
             {props.children}
         </div>
