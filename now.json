@@ -1,4 +1,5 @@
 {
+    "version": 2,
     "name": "meal-planner",
     "regions": ["lhr1"],
     "builds": [
