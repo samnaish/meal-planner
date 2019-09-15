@@ -10,21 +10,29 @@ export default () => {
                     <input className="login-box__input" type="text" placeholder="password" required="required"></input>
                     <button type="submit" className="login-box__login-button">login</button>
                     <footer className="login-box__footer">
-                        <span className="login-box__caption">Not registered?</span>
+                        <span className="login-box__caption">Not registered? </span>
                         <a className="login-box__create-account" href="#">Create an account</a>
                     </footer>
                 </form>
             </div>
             <style>{`
+
+            body {
+                margin: 0;
+                padding: 0;
+            }
             
             .login-page {
                 background-image: url(/static/images/selectionbox.jpg);
+                box-shadow: 0 3000px rgba(100, 20, 0, 0.3) inset;
                 background-size: cover;
                 background-position: center;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                background-color: rgba(0, 0, 0, 0.5);
+                height: 700px;
+                max-height: 800px;
+                width: 100%;
             }
             
             .login-box {
@@ -51,7 +59,7 @@ export default () => {
                 padding: 10px;
                 width: 45%;
                 height: 40px;
-                background-color: #052f5f;
+                background-color: #ffae03;
                 color: white;
                 display: inline-block;
                 text-decoration: none;
@@ -65,7 +73,7 @@ export default () => {
             
             button:hover {
                 opacity: 0.8;
-                background-color: #005377;
+                background-color: #615d6c;
             }
             
             .login-box__footer {
@@ -82,7 +90,11 @@ export default () => {
             }
             
             .login-box__create-account:hover {
-                border-bottom-color: #052f5f;
+                border-bottom-color: #cae5ff;
+            }
+
+            .login-box__caption {
+                color: white;
             }
 
             @media screen and (max-width: 440px) {

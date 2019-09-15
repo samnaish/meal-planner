@@ -1,7 +1,9 @@
-export default () => {
+export default ({ imageName }) => {
   return (
     <div className="nav">
       <div className="nav__container">
+        <title>Meal Planner</title>
+        <img className="nav__logo" src="/static/images/logos/logo.png"/>
         <a className="nav__home"href="/">Meal Planner</a>
         <ul className="nav__links">
           <li className="nav__link"><a className="nav__anchor" href="">Sign Up</a></li>
@@ -13,6 +15,17 @@ export default () => {
         .nav {
           background-color: #ffae03;
           margin: 0;
+        }
+
+        .nav__home {
+          text-decoration: none;
+          color: black;
+          font-size: 30px;
+        }
+
+        .nav__logo {
+          height: 50px;
+          padding: 10px;
         }
 
         .nav__container {
@@ -33,15 +46,18 @@ export default () => {
 
         .nav__link {
           float: left;
-          padding: 0 20px;
+          padding: 0 5px;
         }
 
         .nav__anchor:hover {
-          color: darkgrey;
+          color: black;
+          background-color: #fff;
         }
 
         .nav__anchor {
           text-decoration: none;
+          color: black;
+          padding: 10px;
         }
 
         .nav__tag {

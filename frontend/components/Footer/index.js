@@ -6,6 +6,7 @@ export default () => {
             <style>{`
 
                 .footer {
+                    background-color: #7c7287;
                     display: flex;
                     flex-direction: row;
                     justify-content: center;
