@@ -1,10 +1,11 @@
-export default ({ imageName }) => {
+export default () => {
   return (
     <div className="nav">
       <div className="nav__container">
-        <title>Meal Planner</title>
-        <img className="nav__logo" src="/static/images/logos/logo.png"/>
-        <a className="nav__home"href="/">Meal Planner</a>
+        <div className="nav__title">
+          <img className="nav__logo" src="/static/images/logos/logo.png"/>
+          <a className="nav__home"href="/">Meal Planner</a>
+        </div>
         <ul className="nav__links">
           <li className="nav__link"><a className="nav__anchor" href="">Sign Up</a></li>
           <li className="nav__link"><a className="nav__anchor" href="/login">Login</a></li>
@@ -21,6 +22,12 @@ export default ({ imageName }) => {
           text-decoration: none;
           color: black;
           font-size: 30px;
+        }
+
+        .nav__title {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
         }
 
         .nav__logo {
@@ -40,8 +47,13 @@ export default ({ imageName }) => {
 
         .nav__links {
           list-style: none;
-          justify-content: left;
-          padding: 10px;
+        }
+
+        @media screen and (max-width: 400px) {
+           
+            .nav__container {
+              
+            }
         }
 
         .nav__link {
@@ -58,6 +70,7 @@ export default ({ imageName }) => {
           text-decoration: none;
           color: black;
           padding: 10px;
+          display: inline-block;
         }
 
         .nav__tag {

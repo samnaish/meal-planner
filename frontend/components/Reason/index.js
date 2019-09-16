@@ -31,6 +31,7 @@ export default ({ title, caption, imageName }) => {
                     width: 150px;
                     margin: 10px;
                     object-fit: cover;
+                    margin-bottom: 15px;
                 }
 
             `}</style>

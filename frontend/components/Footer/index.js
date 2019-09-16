@@ -2,7 +2,7 @@
 export default () => {
     return (
         <footer className="footer">
-            <p className="footer__caption">Developed by <a className="footer__anchor" href="https://github.com/samnaish">Sam Naish</a></p>
+            <p className="footer__caption">&copy; Developed by <a className="footer__anchor" href="https://github.com/samnaish">Sam Naish</a></p>
             <style>{`
 
                 .footer {
@@ -10,6 +10,7 @@ export default () => {
                     display: flex;
                     flex-direction: row;
                     justify-content: center;
+                    align-items: center;
                 }
 
                 .footer__anchor {

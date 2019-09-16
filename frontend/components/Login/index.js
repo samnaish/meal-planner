@@ -1,40 +1,17 @@
-import Footer from "../Footer";
 
 export default () => {
     return (
-        <div className="page">    
-            <div className="login-page">
-            <div className="login-box">
-                <form method="post">
-                    <input className="login-box__input" type="text" placeholder="username" required="required"></input>
-                    <input className="login-box__input" type="text" placeholder="password" required="required"></input>
-                    <button type="submit" className="login-box__login-button">login</button>
-                    <footer className="login-box__footer">
-                        <span className="login-box__caption">Not registered? </span>
-                        <a className="login-box__create-account" href="#">Create an account</a>
-                    </footer>
-                </form>
-            </div>
+        <div className="login-box">
+            <form method="post">
+                <input className="login-box__input" type="text" placeholder="username" required="required" />
+                <input className="login-box__input" type="text" placeholder="password" required="required" />
+                <button type="submit" className="login-box__login-button">login</button>
+                <footer className="login-box__footer">
+                    <span className="login-box__caption">Not registered? </span>
+                    <a className="login-box__create-account" href="#">Create an account</a>
+                </footer>
+            </form>
             <style>{`
-
-            body {
-                margin: 0;
-                padding: 0;
-            }
-            
-            .login-page {
-                background-image: url(/static/images/selectionbox.jpg);
-                box-shadow: 0 3000px rgba(100, 20, 0, 0.3) inset;
-                background-size: cover;
-                background-position: center;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 700px;
-                max-height: 800px;
-                width: 100%;
-            }
-            
             .login-box {
                 background-color: #cc2936;
                 width: 500px;
@@ -107,8 +84,6 @@ export default () => {
 
             `}</style>
         </div>
-        <Footer />
-    </div>
     );
 }
     

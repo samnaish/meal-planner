@@ -1,12 +1,10 @@
-import Navigation from "../components/Navigation";
+import Layout from "../components/Layout";
 import Reason from "../components/Reason";
-import Footer from "../components/Footer";
 import How from "../components/How";
 
 export default () => {
     return (
-        <div>
-            <Navigation />
+        <Layout>
             <div className="welcome-splash">
                 <h1 className="welcome-splash__caption">Hungry?</h1>
             </div>
@@ -17,11 +15,11 @@ export default () => {
             </div>
             <div className="hows">
                 <h3 className="how__title">What can you do?</h3>
-                <How subtitle="Find" imageName="looking.jpg"/>
-                <How subtitle="Plan and Gather" imageName="ingredients.jpg"/>
-                <How subtitle="Or Make and Add" imageName="cooking.jpg"/>
+                <How subtitle="1. Find the meal for you" imageName="book.png" caption="Pick from a list of carefully selected recipes."/>
+                <How subtitle="2. Plan and Gather" imageName="ingredients.png" caption="Gather the ingredients you need."/>
+                <How subtitle="3. Make and Bake" imageName="cooking-pot.png" caption="Start Cooking!"/>
+                <How subtitle="4. If your creative..." imageName="add-column.png" caption="If you have a recipe of your own, then you can add to our collection!"/>
             </div>
-            <Footer />
             <style>{`
 
                 body {
@@ -56,7 +54,7 @@ export default () => {
                     justify-content: center;
                     flex-wrap: wrap;
                     width: 100%;
-                    background-color: #cc2936;
+                    background-color: #FF6663;
                 }
 
                 .hows {
@@ -68,7 +66,7 @@ export default () => {
                 }
 
             `}</style>
-        </div>
+        </Layout>
         
     )
 }
