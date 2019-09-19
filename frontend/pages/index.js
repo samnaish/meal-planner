@@ -1,6 +1,8 @@
 import Layout from "../components/Layout";
+import Heading from '../components/Heading';
 import Reason from "../components/Reason";
 import How from "../components/How";
+import Dishes from "../components/Dishlist";
 
 export default () => {
     return (
@@ -8,25 +10,24 @@ export default () => {
             <div className="welcome-splash">
                 <h1 className="welcome-splash__caption">Hungry?</h1>
             </div>
-            <div className="reasons">
+            <div className="row row--red">
                 <Reason title="What do you feel like eating?" caption="With Meal planner, the possiblites are endless....." imageName="chickenchips.jpg"/>
                 <Reason title="Something" caption="This is my middle caption" imageName="sushi.jpeg"/>
                 <Reason title="Great!" caption="This is my end caption" imageName="burger.jpg"/>
             </div>
-            <div className="hows">
-                <h3 className="how__title">What can you do?</h3>
+            <div className="row">
+                <Heading title="What can you do?" />
                 <How subtitle="1. Find the meal for you" imageName="book.png" caption="Pick from a list of carefully selected recipes."/>
                 <How subtitle="2. Plan and Gather" imageName="ingredients.png" caption="Gather the ingredients you need."/>
                 <How subtitle="3. Make and Bake" imageName="cooking-pot.png" caption="Start Cooking!"/>
                 <How subtitle="4. If your creative..." imageName="add-column.png" caption="If you have a recipe of your own, then you can add to our collection!"/>
             </div>
-            <style>{`
+            <div className="row">
+                <Heading title="Possible Meals" />
+                <Dishes />
+            </div>
+            <style jsx>{`
 
-                body {
-                    margin: 0;
-                    padding: 0;
-                }
-            
                 .welcome-splash {
                     background-image: url(/static/images/takeout.jpg);
                     background-size: cover;
@@ -48,21 +49,16 @@ export default () => {
                     border-radius: 20px;
                 }
 
-                .reasons {
+                .row {
                     display: flex;
                     flex-direction: row;
                     justify-content: center;
                     flex-wrap: wrap;
                     width: 100%;
-                    background-color: #FF6663;
                 }
 
-                .hows {
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: center;
-                    flex-wrap: wrap;
-                    width: 100%;
+                .row--red {
+                    background-color: #FF6663;
                 }
 
             `}</style>
@@ -70,4 +66,3 @@ export default () => {
         
     )
 }
-

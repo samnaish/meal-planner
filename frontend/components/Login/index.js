@@ -8,7 +8,7 @@ export default () => {
                 <button type="submit" className="login-box__login-button">login</button>
                 <footer className="login-box__footer">
                     <span className="login-box__caption">Not registered? </span>
-                    <a className="login-box__create-account" href="#">Create an account</a>
+                    <a className="login-box__create-account" href="/signup">Create an account</a>
                 </footer>
             </form>
             <style>{`

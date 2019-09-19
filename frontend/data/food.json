@@ -1,0 +1,313 @@
+[
+    {
+        "name": "Spaghetti Bolognese",
+        "ingredients": [
+            {
+                "name": "Olive Oil",
+                "quantity": 2,
+                "units": "tbsp"
+            },
+            {
+                "name": "Lean Minced Beef",
+                "quantity": 500,
+                "units": "g"
+            },
+            {
+                "name": "large onion",
+                "quantity": 1,
+                "units": ""
+            },
+            {
+                "name": "carrot, peeled and finely chopped",
+                "quantity": 1,
+                "units": ""
+            },
+            {
+                "name": "celery, finely chopped",
+                "quantity": 2,
+                "units": "sticks"
+            }, 
+            {
+                "name": "garlic, crushed",
+                "quantity": 4,
+                "units": "cloves"
+            }, 
+            {
+                "name": "can chopped tomatoes",
+                "quantity": 400,
+                "units": "g"
+            },
+            {
+                "name": "jar or carton tomato passata",
+                "quantity": 450,
+                "units": "g"
+            }, 
+            {
+                "name": "dried oregano",
+                "quantity": 0.5,
+                "units": "g"
+            },
+            {
+                "name": "spaghetti",
+                "quantity": 400,
+                "units": "g"
+            }, 
+            {
+                "name": "grated Parmesan cheese",
+                "quantity": 1,
+                "units": "g"
+            }
+        ],
+        "time": {
+            "prep": "10 mins",
+            "cook": "18 mins"
+        },
+        "servings": "4"
+    },
+    {
+        "name": "Chicken with Garlic and Lime",
+        "ingredients": [
+            {
+                "name": "olive oil",
+                "quantity": 3,
+                "units": "tbsp"
+            },
+            {
+                "name": "skinless, boneless chicken breast fillets",
+                "quantity": 5,
+                "units": "pieces"
+            },
+            {
+                "name": "garlic",
+                "quantity": 2,
+                "units": "cloves"
+            },
+            {
+                "name": "lime, juiced",
+                "quantity": 0.5
+            },
+            {
+                "name": "chopped fresh coriander",
+                "quantity": 4,
+                "units": "g"
+            },
+            {
+                "name": "salt and pepper",
+                "quantity": 1,
+                "units": "g"
+            }
+        ],
+            "time": {
+                "prep": "5 mins",
+                "cook": "15 mins"
+            },
+            "servings": "5"
+    },
+    {
+        "name": "Chicken hekka",
+        "ingredients": [
+            {
+                "name": "skinless, boneless chicken breast fillets",
+                "quantity": 675,
+                "units": "g"
+            },
+            {
+                "name": "caster sugar",
+                "quantity": "140",
+                "units": "g"
+            },
+            {
+                "name": "soy sauce",
+                "quantity": 7,
+                "units": "tbsp"
+            },
+            {
+                "name": "mirin (Japanese sweet wine)",
+                "quantity": 175,
+                "units": "ml"
+            },
+            {
+                "name": "vegetable oil",
+                "quantity": 2,
+                "units": "tbsp"
+            },
+            {
+                "name": "grated root ginger",
+                "quantity": 1,
+                "units": "tbsp"
+            },
+            {
+                "name": "carrots, julienned",
+                "quantity": 3,
+                "units": ""
+            },
+            {
+                "name": "onions, thinly sliced",
+                "quantity": 2,
+                "units": ""
+            },
+            {
+                "name": "tin bamboo shoots",
+                "quantity": "225",
+                "units": "g"
+            },
+            {
+                "name": "mushrooms",
+                "quantity": 225,
+                "units": "g"
+            },
+            {
+                "name": "watercress, coarsely chopped",
+                "quantity": 30,
+                "units": "g"
+            },
+            {
+                "name": "pack rice noodles, soaked and cut into 5cm pieces",
+                "quantity": 250,
+                "units": "g"
+            }
+        ],
+            "time": {
+                "prep": "20 mins",
+                "cook": "15 mins"
+            },
+            "servings": "8"
+    },
+    {
+        "name": "Linguine with pork, greens and peas",
+        "ingredients": [
+            {
+                "name": "dry sherry or rice wine",
+                "quantity": 1,
+                "units": "tbsp"
+            },
+            {
+                "name": "pork fillet (tenderloin), thinly sliced across the grain",
+                "quantity": 375,
+                "units": "g"
+            },
+            {
+                "name": "linguine",
+                "quantity": 350,
+                "units": "g"
+            },
+            {
+                "name": "vegetable oil",
+                "quantity": 1,
+                "units": "tbsp"
+            },
+            {
+                "name": "garlic, crushed",
+                "quantity": 2,
+                "units": "cloves"
+            },
+            {
+                "name": "finely chopped fresh root ginger",
+                "quantity": 2,
+                "units": "tsp"
+            },
+            {
+                "name": "pak choi or spring greens, shredded",
+                "quantity": 185,
+                "units": "g"
+            },
+            {
+                "name": "frozen peas, thawed",
+                "quantity": 150,
+                "units": "g"
+            },
+            {
+                "name": "spring onions, thinly sliced",
+                "quantity": 6,
+                "units": ""
+            },
+            {
+                "name": "chicken stock",
+                "quantity": 175,
+                "units": "ml"
+            },
+            {
+                "name": "oyster sauce",
+                "quantity": 2,
+                "units":"tsp"
+            },
+            {
+                "name": "cornflour",
+                "quantity": 1,
+                "units": "tbsp"
+            },
+            {
+                "name": "bean sprouts",
+                "quantity": 100,
+                "units": "g"
+            },
+            {
+                "name": "toasted sesame oil",
+                "quantity": 1,
+                "units": "tsp"
+            }
+        ],
+            "time": {
+                "prep": "35 mins",
+                "cook": "10 mins"
+            },
+            "servings": "6"
+    },
+    {
+        "name": "Chicken Thai Green Curry",
+        "ingredients": [
+            {
+                "name": "skinless chicken breast fillets",
+                "quantity": 500,
+                "units": "g"
+            },
+            {
+                "name": "Thai green curry paste",
+                "quantity": 4,
+                "units": "tbsp"
+            },
+            {
+                "name": "olive oil",
+                "quantity": 3,
+                "units": "tbsp"
+            },
+            {
+                "name": "onions, sliced",
+                "quantity": 2
+            },
+            {
+                "name": "garlic, crushed",
+                "quantity": 2,
+                "units": "cloves"
+            },
+            {
+                "name": "red pepper, sliced",
+                "quantity": 1
+            },
+            {
+                "name": "baby aubergines, halved",
+                "quantity": 250,
+                "units": "g"
+            },
+            {
+                "name": "boiling water",
+                "quantity": 500,
+                "units": "ml"
+            },
+            {
+                "name": "baby courgettes, stalks trimmed",
+                "quantity": 200,
+                "units": "g"
+            },
+            {
+                "name": "large tender fresh basil sprigs, coarsely shredded",
+                "quantity": 4
+            }
+        ],
+            "time": {
+                "prep": "10 mins",
+                "cook": "20 mins"
+            },
+            "servings": "4"
+    }
+]

@@ -7,7 +7,7 @@ export default () => {
           <a className="nav__home"href="/">Meal Planner</a>
         </div>
         <ul className="nav__links">
-          <li className="nav__link"><a className="nav__anchor" href="">Sign Up</a></li>
+          <li className="nav__link"><a className="nav__anchor" href="/signup">Sign Up</a></li>
           <li className="nav__link"><a className="nav__anchor" href="/login">Login</a></li>
         </ul>
       </div>
@@ -47,13 +47,6 @@ export default () => {
 
         .nav__links {
           list-style: none;
-        }
-
-        @media screen and (max-width: 400px) {
-           
-            .nav__container {
-              
-            }
         }
 
         .nav__link {

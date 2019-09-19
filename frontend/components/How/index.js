@@ -5,7 +5,7 @@ export default ( { subtitle, caption, imageName }) => {
             <span className="how__subtitle">{subtitle}</span>
             <img className="how__img" src={`https://img.icons8.com/ios/60/000000/${imageName}`}/>
             <p className="how__caption">{caption}</p>
-            <style>{`
+            <style jsx>{`
 
                 .how {
                     display: flex;
@@ -17,30 +17,9 @@ export default ( { subtitle, caption, imageName }) => {
                     outline: 1px solid black;
                 }
 
-                .how__title {
-                    font-size: 26px;
-                    display: block;
-                    width: 1200px;
-                    padding: 10px;
-                    text-align: center;
-                }
-
                 .how__subtitle {
                     font-size: 24px;
                     margin: 10px;
-                }
-
-                .how__title::before, .how__title::after {
-                    content: '';
-                    border: 1px solid black;
-                }
-
-                .how__title::before {
-                    margin-right: 10px;
-                }
-
-                .how__title::after {
-                    margin-left: 10px;
                 }
 
                 .how__img {
