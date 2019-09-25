@@ -15,6 +15,7 @@ export default ( { subtitle, caption, imageName }) => {
                     min-width: 250px;
                     width: 50%;
                     outline: 1px solid black;
+                    padding: 10px;
                 }
 
                 .how__subtitle {
