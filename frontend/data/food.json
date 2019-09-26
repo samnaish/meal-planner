@@ -61,8 +61,8 @@
             }
         ],
         "time": {
-            "prep": "10 mins",
-            "cook": "18 mins"
+            "prep": "10",
+            "cook": "18"
         },
         "servings": "4"
     },
@@ -102,14 +102,14 @@
             }
         ],
             "time": {
-                "prep": "5 mins",
-                "cook": "15 mins"
+                "prep": "5",
+                "cook": "15"
             },
             "servings": "5"
     },
     {
         "id": "3",
-        "image": "http://ukcdn.ar-cdn.com/recipes/port250/9e39b598-ba1e-4ff8-8a37-2fd5ce85c13e.jpg",
+        "image": "https://www.cookueen.com/wp-content/uploads/2019/07/CHICKEN-HEKKA-950x1290.jpg",
         "name": "Chicken hekka",
         "ingredients": [
             {
@@ -174,8 +174,8 @@
             }
         ],
             "time": {
-                "prep": "20 mins",
-                "cook": "15 mins"
+                "prep": "20",
+                "cook": "15"
             },
             "servings": "8"
     },
@@ -256,8 +256,8 @@
             }
         ],
             "time": {
-                "prep": "35 mins",
-                "cook": "10 mins"
+                "prep": "35",
+                "cook": "10"
             },
             "servings": "6"
     },
@@ -315,8 +315,8 @@
             }
         ],
             "time": {
-                "prep": "10 mins",
-                "cook": "20 mins"
+                "prep": "10",
+                "cook": "20"
             },
             "servings": "4"
     }
