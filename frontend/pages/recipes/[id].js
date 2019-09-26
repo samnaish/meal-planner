@@ -19,7 +19,7 @@ const RecipePage = ({ dish }) => {
                     <p className="prep__time">Estimated Prep-Time: <strong>{dish.time.prep}</strong></p>
                     <p className="prep__cook">Estimated Cook-Time: <strong>{dish.time.cook}</strong></p>
                     <p className="prep__servings">Servings: <strong>{dish.servings}</strong></p>
-                    <h4 className="Ingredients__title">Ingredients needed</h4>
+                    <h4 className="ingredients__title">Ingredients needed</h4>
                         {
                             dish.ingredients.map((item, index) => {
                                 return <div key={index}>
@@ -68,8 +68,25 @@ const RecipePage = ({ dish }) => {
                 }
 
                 .prep__title {
-                    margin: 5px 0 5px 5px;
+                    font-size: 26px;
+                    display: block;
+                    width: 1200px;
+                    padding: 10px;
                 }
+
+                .prep__title::before, .prep__title::after {
+                    content: '';
+                    border: 1px solid black;
+                }
+
+                .prep__title::before {
+                    margin-right: 10px;
+                }
+
+                .prep__title::after {
+                    margin-left: 10px;
+                }
+
 
                 .prep__time {
                     margin: 5px 0 5px 0;
@@ -89,6 +106,26 @@ const RecipePage = ({ dish }) => {
                     justify-content: center;
                     padding: 5px 0 5px 10px;
                     align-items: center;
+                }
+
+                .ingredients__title {
+                    font-size: 26px;
+                    display: block;
+                    width: 1200px;
+                    padding: 10px;
+                }
+
+                .ingredients__title::before, .ingredients__title::after {
+                    content: '';
+                    border: 1px solid black;
+                }
+
+                .ingredients__title::before {
+                    margin-right: 10px;
+                }
+
+                .ingredients__title::after {
+                    margin-left: 10px;
                 }
 
                 .ingredient-item {
