@@ -21,6 +21,10 @@ const Recipe = ({ id, name, ingredients, prepTime, cookTime }) => {
             </div>
             <style>{`
             
+                .body {
+                    background-color: #E6E6E6;
+                }
+
                 .list {
                     margin: 10px 10px;
                     background-color: #cae5ff;
@@ -44,6 +48,7 @@ const Recipe = ({ id, name, ingredients, prepTime, cookTime }) => {
 
                 .list__button {
                     justify-content: center;
+                    align-items: center;
                     padding: 10px;
                     background-color: #7c7287;
                     text-decoration: none;
@@ -53,6 +58,7 @@ const Recipe = ({ id, name, ingredients, prepTime, cookTime }) => {
                     border-radius: 5px;
                     text-transform: uppercase;
                     cursor: pointer;
+                    color: black;
                 }
 
                 .list__button:hover {

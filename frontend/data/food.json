@@ -22,7 +22,7 @@
             {
                 "name": "carrot, peeled and finely chopped",
                 "quantity": 1,
-                "units": "N/A"
+                "units": ""
             },
             {
                 "name": "celery, finely chopped",
@@ -84,7 +84,7 @@
             {
                 "name": "garlic",
                 "quantity": 2,
-                "units": "cloves"
+                "units": "-cloves"
             },
             {
                 "name": "lime, juiced",
@@ -207,7 +207,7 @@
             {
                 "name": "garlic, crushed",
                 "quantity": 2,
-                "units": "cloves"
+                "units": "-cloves"
             },
             {
                 "name": "finely chopped fresh root ginger",
@@ -288,7 +288,7 @@
             {
                 "name": "garlic, crushed",
                 "quantity": 2,
-                "units": "cloves"
+                "units": "-cloves"
             },
             {
                 "name": "red pepper, sliced",

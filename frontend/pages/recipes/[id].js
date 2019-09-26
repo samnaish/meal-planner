@@ -1,11 +1,11 @@
 import { useRouter } from 'next/router';
 import dishData from "../../data/food.json";
 import Layout from "../../components/Layout";
+import Heading from "../../components/Heading";
 
 
 const RecipePage = ({ dish }) => {
     const router = useRouter();
-    console.log('dish', dish);
     
     return (
         <Layout>
@@ -15,21 +15,27 @@ const RecipePage = ({ dish }) => {
                     <img className="recipe__image" src={dish.image}/>
                 </div>
                 <div className="prep">
+                    <h4 className="prep__title">Time</h4>
                     <p className="prep__time">Estimated Prep-Time: <strong>{dish.time.prep}</strong></p>
                     <p className="prep__cook">Estimated Cook-Time: <strong>{dish.time.cook}</strong></p>
                     <p className="prep__servings">Servings: <strong>{dish.servings}</strong></p>
+                    <h4 className="Ingredients__title">Ingredients needed</h4>
+                        {
+                            dish.ingredients.map((item, index) => {
+                                return <div key={index}>
+                                    <li className="ingredient-item">{item.name} {item.quantity}{item.units}</li>
+                                </div>
+                            })
+                        }
                 </div>
             </div>
-            
-            
             <style jsx>{`
 
                 .recipe {
-                    margin: 20px 10px 20px 0px;
                     background-color: #E6E6E6;
                     display: flex;
                     flex-direction: row;
-                    width: 800px;
+                    min-width: 100%;
                 }
 
                 .recipe__header {
@@ -43,6 +49,7 @@ const RecipePage = ({ dish }) => {
                     font-size: 26px;
                     margin: 0 0 0 30px;
                     padding: 10px;
+                    width: 250px;
                 }
 
                 .recipe__image {
@@ -53,7 +60,6 @@ const RecipePage = ({ dish }) => {
                     object-fit: cover;
                     border-radius: 50%;
                     margin: 20px auto;
-                    
                 }
 
                 .prep {
@@ -61,25 +67,34 @@ const RecipePage = ({ dish }) => {
                     flex-direction: column;
                 }
 
+                .prep__title {
+                    margin: 5px 0 5px 5px;
+                }
+
                 .prep__time {
+                    margin: 5px 0 5px 0;
                     justify-content: center;
                     align-items: center;
-                    margin: 0 0 0 50px;
-                    padding: 10px;
+                    padding: 5px 0 5px 10px;
                 }
 
                 .prep__cook {
+                    margin: 5px 0 5px 0;
                     justify-content: center;
                     align-items: center;
-                    margin: 0 0 0 50px;
-                    padding: 10px;
+                    padding: 5px 0 5px 10px;
                 }
 
                 .prep__servings {
                     justify-content: center;
-                    padding: 10px;
+                    padding: 5px 0 5px 10px;
                     align-items: center;
-                    margin: 0 0 0 50px;
+                }
+
+                .ingredient-item {
+                    display: block;
+                    list-style: none;
+                    padding: 5px 0 5px 10px;
                 }
 
             `}</style>
@@ -96,5 +111,4 @@ RecipePage.getInitialProps = async (context) => {
         })
     }
 }
-
 export default RecipePage;
