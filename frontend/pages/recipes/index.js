@@ -32,9 +32,11 @@ export default () => {
                             <h2 className="recipe__passage-heading">Info</h2>
                             <p className="recipe__passage-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                         </div>
-                        <div>
-                            <Update />
-                        </div>
+                            <Update name="Alex Naish" passage="Added the Thai green curry to my favourites!"/>
+                            <Update name="Richard Naish" passage="There's is still no recipe for a hard boiled egg!"/>
+                            <Update name="Sara Szopko" passage="Where's the recipes with chocolate?"/>
+                            <Update name="Angela" passage="The Three fish pie is going to added to my favourites!"/>
+                            <Update name="Bob" passage="Soo many choices so little time!"/>
                     </div>
                 <style jsx>{`
 
@@ -66,7 +68,7 @@ export default () => {
                     .recipe__header {
                         display: flex;
                         flex-direction: row;
-                        border: 1px solid black;
+                        border: 1px solid lightgrey;
                         align-items: center;
                         padding: 10px;
                     }
@@ -83,12 +85,14 @@ export default () => {
                     }
 
                     .recipe__occupation {
+                        color: #FE4E00;
                         font-size: 14px;
                         margin: 0;
                     }
 
                     .recipe__user-info {
                         border: 1px solid black;
+                        background-color: #EBDCCB;
                     }
 
                     .recipe__passage-heading {

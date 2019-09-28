@@ -29,7 +29,7 @@ export default () => {
             <div>
                 <Heading title="Possible Meals" />
                 <DishList />
-                <Link href="/recipes/">
+                <Link href="/recipes">
                     <a className="recipes-button">More Recipes</a>
                 </Link>
             </div>
