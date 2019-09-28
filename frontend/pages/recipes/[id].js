@@ -3,7 +3,6 @@ import dishData from "../../data/food.json";
 import Layout from "../../components/Layout";
 import Container from "../../components/Container";
 
-
 const RecipePage = ({ dish }) => {
     const router = useRouter();
     
@@ -36,7 +35,7 @@ const RecipePage = ({ dish }) => {
                             <h3 className="recipe__ingredients-heading">Ingredients</h3>
                             <ul className="recipe__ingredients-list">
                                 {
-                                    dish.ingredients.map((item, index) => {
+                                    dish.ingredients.map((item) => {
                                         return (
                                             <li className="recipe__ingredient">
                                                 <div className="recipe__ingredient-quantity">{item.quantity}{item.units}</div>

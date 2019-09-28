@@ -1,8 +1,10 @@
+import Link from 'next/link';
+
 import Layout from "../components/Layout";
 import Heading from '../components/Heading';
 import Reason from "../components/Reason";
 import How from "../components/How";
-import Dishes from "../components/Dishlist";
+import DishList from "../components/Dishlist";
 
 export default () => {
     return (
@@ -15,16 +17,21 @@ export default () => {
                 <Reason title="Something" caption="This is my middle caption" imageName="sushi.jpeg"/>
                 <Reason title="Great!" caption="This is my end caption" imageName="burger.jpg"/>
             </div>
-            <div className="row">
+            <div>
                 <Heading title="What can you do?" />
-                <How subtitle="1. Find the meal for you" imageName="book.png" caption="Pick from a list of carefully selected recipes."/>
-                <How subtitle="2. Plan and Gather" imageName="ingredients.png" caption="Gather the ingredients you need."/>
-                <How subtitle="3. Make and Bake" imageName="cooking-pot.png" caption="Start Cooking!"/>
-                <How subtitle="4. If your creative..." imageName="add-column.png" caption="If you have a recipe of your own, then you can add to our collection!"/>
+                <div className="row">
+                    <How subtitle="1. Find the meal for you" imageName="book.png" caption="Pick from a list of carefully selected recipes."/>
+                    <How subtitle="2. Plan and Gather" imageName="ingredients.png" caption="Gather the ingredients you need."/>
+                    <How subtitle="3. Make and Bake" imageName="cooking-pot.png" caption="Start Cooking!"/>
+                    <How subtitle="4. If your creative..." imageName="add-column.png" caption="If you have a recipe of your own, then you can add to our collection!"/>
+                </div>
             </div>
-            <div className="row">
+            <div>
                 <Heading title="Possible Meals" />
-                <Dishes />
+                <DishList />
+                <Link href="/recipes/">
+                    <a className="recipes-button">More Recipes</a>
+                </Link>
             </div>
             <style jsx>{`
 
@@ -59,6 +66,23 @@ export default () => {
 
                 .row--red {
                     background-color: #FF6663;
+                }
+
+                .recipes-button {
+                    display: block;
+                    color: white;
+                    text-decoration: none;
+                    width: 200px;
+                    margin: 10px auto;
+                    text-align: center;
+                    background-color: #710000;
+                    padding: 10px;
+                    transition: 0.3s ease;
+                }
+
+                .recipes-button:hover {
+                    border-radius: 10px;
+                    background-color: #197278;
                 }
 
             `}</style>

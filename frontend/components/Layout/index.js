@@ -3,9 +3,9 @@ import Footer from "../Footer";
 
 export default ({ children }) => {
     return (
-        <div>
+        <div className="app-container">
             <Navigation />
-            {children}
+            <main className="content">{children}</main>
             <Footer />
             <style jsx global>{`
                 * {
@@ -19,6 +19,16 @@ export default ({ children }) => {
                     font-size: 16px;
                     height: 100%;
                     color: #222;
+                }
+
+                .app-container {
+                    display: flex;
+                    flex-direction: column;
+                    min-height: 100vh;
+                }
+
+                main.content {
+                    flex-grow: 1;
                 }
             `}</style>
         </div>

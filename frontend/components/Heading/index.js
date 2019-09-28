@@ -5,9 +5,8 @@ export default ({ title }) => {
             <style jsx>
                 {`
                 h3 {
-                    font-size: 26px;
                     display: block;
-                    width: 1200px;
+                    font-size: 26px;
                     padding: 10px;
                     text-align: center;
                 }

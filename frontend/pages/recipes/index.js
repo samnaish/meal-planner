@@ -1,105 +1,108 @@
-import Link from 'next/link';
 import Layout from "../../components/Layout";
 import DishesData from "../../data/food.json";
-
-
-const Recipe = ({ id, name, ingredients, prepTime, cookTime }) => {
-    return(
-        <div className="list">
-            <div className="list__item">
-                <h3 className="list__title">{id}. {name}</h3>
-                <p className="list__ingredients">Number of ingredients: {ingredients.length}</p>
-            </div>
-            <div className="list__item">
-                <p className="list__time">prep: {prepTime}</p>
-                <p className="list__time">cook: {cookTime}</p>
-            </div>
-            <div className="list__more">
-                <Link as={`/recipes/${id}`} href="/recipes/[id]">
-                    <a className="list__button">See More</a>
-                </Link>
-            </div>
-            <style>{`
-            
-                .body {
-                    background-color: #E6E6E6;
-                }
-
-                .list {
-                    margin: 10px 10px;
-                    background-color: #cae5ff;
-                    width: 300px;
-                    padding: 10px;
-                }
-
-                .list__item {
-                    margin: 0 10px;
-                }
-
-                list__title {
-                    margin: 5px;
-                }
-
-                .list__more {
-                    display: flex:
-                    flex-direction: row;
-                    margin: 10px;
-                }
-
-                .list__button {
-                    justify-content: center;
-                    align-items: center;
-                    padding: 10px;
-                    background-color: #7c7287;
-                    text-decoration: none;
-                    border: none;
-                    font-size: 12px;
-                    transition: background 0.3s ease;
-                    border-radius: 5px;
-                    text-transform: uppercase;
-                    cursor: pointer;
-                    color: black;
-                }
-
-                .list__button:hover {
-                    opacity: 0.8;
-                }
-
-            `}</style>
-        </div>
-    )
-}
+import Recipe from "../../components/Recipe";
+import Container from "../../components/Container";
+import Update from "../../components/Update";
 
 export default () => {
     return(
         <Layout>
-            <div className="recipe">
-                {
-                    DishesData.map((dish, index) => {
-                        return (
-                            <div key={index} className="dish-list__item">
-                                <Recipe id={dish.id} name={dish.name} ingredients={dish.ingredients} prepTime={dish.time.prep} cookTime={dish.time.cook}/>
+            <Container>
+                <div className="recipes">
+                    <div className="recipes__list">
+                        {
+                            DishesData.map((dish) => {
+                                return (
+                                    <div key={dish.id} className="recipes__list-item">
+                                        <Recipe id={dish.id} name={dish.name} image={dish.image}/>
+                                    </div>
+                                )
+                            })
+                        }   
+                    </div>
+                    <div className="recipes__side-bar">
+                        <div className="recipe__header">
+                            <img className="recipe__bar-image" src="https://img.icons8.com/ios/50/000000/user.png"/>
+                            <div className="recipe__user">
+                                <h1 className="recipe__bar-username">Username</h1>
+                                <p className="recipe__occupation">occupation</p>
                             </div>
-                        )
-                    })
-                }
-            </div>
-            <style jsx>{`
+                        </div>
+                        <div className="recipe__user-info">
+                            <h2 className="recipe__passage-heading">Info</h2>
+                            <p className="recipe__passage-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        </div>
+                        <div>
+                            <Update />
+                        </div>
+                    </div>
+                <style jsx>{`
 
-                .recipe {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    width: 50%;
-                    flex-wrap: wrap;
-                }
+                    .recipes {
+                        display: flex;
+                        flex-direction: row;
+                    }
 
-                .recipe__list-title {
-                    list-style: none;
-                }
+                    .recipes__list {
+                        display: flex;
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                        width: 80%;
+                    }
 
-            `}</style>
+                    .recipes__list-item {
+                        width: 33.3%;
+                        min-width: 200px;
+                        height: 200px;
+                        flex-grow: 1;
+                    }
+
+                    .recipes__side-bar {
+                        border: 1px solid black;
+                        width: 20%;
+                        min-width: 200px;
+                    }
+
+                    .recipe__header {
+                        display: flex;
+                        flex-direction: row;
+                        border: 1px solid black;
+                        align-items: center;
+                        padding: 10px;
+                    }
+
+                    .recipe__bar-image {
+                        width: 40px;
+                        height: 40px;
+                        margin-right: 10px;
+                    }
+
+                    .recipe__bar-username {
+                        font-size: 16px;
+                        margin: 0;
+                    }
+
+                    .recipe__occupation {
+                        font-size: 14px;
+                        margin: 0;
+                    }
+
+                    .recipe__user-info {
+                        border: 1px solid black;
+                    }
+
+                    .recipe__passage-heading {
+                        margin: 5px 0 5px 10px;
+                        font-size: 14px;
+                    }
+
+                    .recipe__passage-text {
+                        margin: 10px 0 0 0;
+                        padding: 0 5px 5px 10px;
+                    }
+                `}</style>
+                </div>
+            </Container>
         </Layout>
     );
 }
