@@ -160,6 +160,26 @@ const RecipePage = ({ dish }) => {
                     max-height: calc(100% - 40px);
                 }
 
+                @media only screen and (max-width: 560px) {
+
+                    .recipe__content {
+                        display: block;
+                    }
+
+                    .recipe__image-container {
+                        display: block;
+                    }
+
+                    .recipe__image {
+                        width: 100vw;
+
+                    }
+
+                    .recipe__ingredients {
+                        width: 100vw;
+                    }
+                  }
+
             `}</style>
         </Layout>
     );
