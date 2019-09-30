@@ -104,6 +104,19 @@ export default () => {
                         margin: 10px 0 0 0;
                         padding: 0 5px 5px 10px;
                     }
+
+                    @media screen and (max-width: 560px) {
+
+                        .recipes {
+                            flex-direction: column;
+                        }
+
+                        .recipes__list, .recipes__side-bar {
+                            width: 100%;
+                        }
+
+                    }
+
                 `}</style>
                 </div>
             </Container>

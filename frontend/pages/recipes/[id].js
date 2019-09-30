@@ -38,7 +38,7 @@ const RecipePage = ({ dish }) => {
                                     dish.ingredients.map((item) => {
                                         return (
                                             <li className="recipe__ingredient">
-                                                <div className="recipe__ingredient-quantity">{item.quantity}{item.units}</div>
+                                                <div className="recipe__ingredient-quantity">{item.quantity}<span className="recipe__ingredient-unit">{item.units}</span></div>
                                                 <div className="recipe__ingredient-info"> {item.name}</div>
                                             </li>
                                         );
@@ -130,7 +130,14 @@ const RecipePage = ({ dish }) => {
                     width: 75px;
                 }
 
+                .recipe__ingredient-unit {
+                    padding: 0 5px;
+                    font-size: 18px;
+                }
+
                 .recipe__ingredient-info {
+                    display: flex;
+                    align-items: center;
                     font-size: 14px;
                     border-bottom: 1px dashed lightgrey;
                     flex-grow: 1;
@@ -163,20 +170,23 @@ const RecipePage = ({ dish }) => {
                 @media only screen and (max-width: 560px) {
 
                     .recipe__content {
-                        display: block;
-                    }
-
-                    .recipe__image-container {
-                        display: block;
+                        flex-direction: column;
                     }
 
                     .recipe__image {
-                        width: 100vw;
+                        position: static;
+                    }
 
+                    .recipe__image-container {
+                        width: 100%;
                     }
 
                     .recipe__ingredients {
-                        width: 100vw;
+                        width: 100%;
+                    }
+
+                    .recipe__ingredient-quantity {
+                        margin: 10px;
                     }
                   }
 
