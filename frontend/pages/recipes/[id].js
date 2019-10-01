@@ -1,4 +1,4 @@
-import dishData from "../../data/food.json";
+import fetch from 'isomorphic-unfetch';
 import Layout from "../../components/Layout";
 import Container from "../../components/Container";
 
@@ -193,9 +193,15 @@ const RecipePage = ({ dish }) => {
     );
 };
 
-RecipePage.getInitialProps = async (context) => {
+
+RecipePage.getInitialProps = async ({ req, query }) => {
+    const baseUrl = req ? `${req.headers['x-forwarded-proto']}://${req.headers['x-forwarded-host']}` : '';
+    const foodRequest = await fetch(`${baseUrl}/api/food`);
+    const { data } = await foodRequest.json();
     return {
-        dish: dishData.find((item) => item.id === context.query.id)
+        dish: data.find((dish) => {
+            return dish.id === query.id
+        })
     }
 }
 export default RecipePage;
