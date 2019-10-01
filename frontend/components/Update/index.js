@@ -10,7 +10,6 @@ export default ({ name, passage }) => {
             <style jsx>{`
 
                 .user-post {
-                    background-color: #EBDCCB;
                     display: flex;
                     flex-direction: row;
                     border: 1px solid lightgrey;
