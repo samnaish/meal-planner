@@ -1,5 +1,3 @@
-import DishesData from "../../data/food.json";
-
 const Dish = ({ name, image, servings, cookTime }) => {
     return(
         <div className="dish">
@@ -38,11 +36,11 @@ const Dish = ({ name, image, servings, cookTime }) => {
 }
 
 
-export default () => {
+export default ({ dishes }) => {
     return (
         <div className="dish-list">
             {
-                DishesData.slice(0, 2).map((dish, index) => {
+                dishes.slice(0, 2).map((dish, index) => {
                     return (
                         <div key={index} className="dish-list__item">
                             <Dish name={dish.name} image={dish.image} servings={dish.servings} cookTime={dish.time.cook}/>

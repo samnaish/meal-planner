@@ -1,17 +1,18 @@
+import fetch from 'isomorphic-unfetch';
+
 import Layout from "../../components/Layout";
-import DishesData from "../../data/food.json";
 import Recipe from "../../components/Recipe";
 import Container from "../../components/Container";
 import Update from "../../components/Update";
 
-export default () => {
+const RecipesPage = ({ dishes }) => {
     return(
         <Layout>
             <Container>
                 <div className="recipes">
                     <div className="recipes__list">
                         {
-                            DishesData.map((dish) => {
+                            dishes.map((dish) => {
                                 return (
                                     <div key={dish.id} className="recipes__list-item">
                                         <Recipe id={dish.id} name={dish.name} image={dish.image}/>
@@ -123,3 +124,15 @@ export default () => {
         </Layout>
     );
 }
+
+
+RecipesPage.getInitialProps = async ({ req }) => {
+    const baseUrl = req ? `${req.headers['x-forwarded-proto']}://${req.headers['x-forwarded-host']}` : '';
+    const foodRequest = await fetch(`${baseUrl}/api/food`);
+    const { data } = await foodRequest.json();
+    return {
+        dishes: data
+    };
+}
+
+export default RecipesPage;

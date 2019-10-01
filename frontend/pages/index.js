@@ -1,12 +1,12 @@
+import fetch from 'isomorphic-unfetch';
 import Link from 'next/link';
-
 import Layout from "../components/Layout";
 import Heading from '../components/Heading';
 import Reason from "../components/Reason";
 import How from "../components/How";
 import DishList from "../components/Dishlist";
 
-export default () => {
+const HomePage = ({ foodData }) => {
     return (
         <Layout>
             <div className="welcome-splash">
@@ -28,7 +28,7 @@ export default () => {
             </div>
             <div>
                 <Heading title="Possible Meals" />
-                <DishList />
+                <DishList dishes={foodData} />
                 <Link href="/recipes">
                     <a className="recipes-button">More Recipes</a>
                 </Link>
@@ -90,3 +90,15 @@ export default () => {
         
     )
 }
+
+HomePage.getInitialProps = async ({ req }) => {
+    const baseUrl = req ? `${req.headers['x-forwarded-proto']}://${req.headers['x-forwarded-host']}` : '';
+    const foodRequest = await fetch(`${baseUrl}/api/food`);
+    const { data } = await foodRequest.json();
+    
+    return {
+        foodData: data
+    };
+}
+
+export default HomePage;

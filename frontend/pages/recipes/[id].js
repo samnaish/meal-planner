@@ -1,10 +1,8 @@
-import { useRouter } from 'next/router';
 import dishData from "../../data/food.json";
 import Layout from "../../components/Layout";
 import Container from "../../components/Container";
 
 const RecipePage = ({ dish }) => {
-    const router = useRouter();
     
     return (
         <Layout>
