@@ -26,12 +26,17 @@ const HomePage = ({ foodData }) => {
                     <How subtitle="4. If your creative..." imageName="add-column.png" caption="If you have a recipe of your own, then you can add to our collection!"/>
                 </div>
             </div>
-            <div>
+            <div className="homepage__buttons-container">
                 <Heading title="Possible Meals" />
                 <DishList dishes={foodData} />
-                <Link href="/recipes">
-                    <a className="recipes-button">More Recipes</a>
-                </Link>
+                <div className="recipes__button-container">
+                    <Link href="/recipes">
+                        <a className="recipes-button">More Recipes</a>
+                    </Link>
+                    <Link href="/submit">
+                        <a className="recipes-button">Submit a Recipe</a>
+                    </Link>
+                </div>
             </div>
             <style jsx>{`
 
@@ -66,6 +71,14 @@ const HomePage = ({ foodData }) => {
 
                 .row--red {
                     background-color: #FF6663;
+                }
+
+                .recipes__button-container {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    flex-wrap: wrap;
                 }
 
                 .recipes-button {
