@@ -6,7 +6,7 @@ export default () => {
     return (
         <Layout>
             <div className="submit__background">
-                <Heading title="Add a Recipe"/>
+                <h1 className="submit__title">Add a Recipe</h1>
                 <Submit />
             </div>
                 <style jsx>{`
@@ -20,6 +20,19 @@ export default () => {
                         background-size: cover;
                         background-position: center;
                         flex-grow: 1;
+                    }
+
+                    .submit__title {
+                        display: inline-block;
+                        margin: 30px auto;
+                        color: lightgrey;
+                    }
+
+                    .submit__title::before, .submit__title::after {
+                        content: '';
+                        border: 1px solid grey;
+                        margin-left: 10px;
+                        margin-right: 10px;
                     }
 
                 `}</style>
