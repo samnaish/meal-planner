@@ -1,88 +1,103 @@
-import Layout from "../Layout";
+import { useState } from 'react';
 import Input from "../Input";
 
 export default () => {
-      return (
-        <Layout>
-            
-            <div className="submit">
-                <form className="submit__form">
-                    <div>
-                        <div className="submit__header">
-                            <label className="submit__name" >Dish Name</label>
-                            <input className="submit__name-input" type="text" />
-                        </div>
-                        <div className="">
-                            <label className="submit__label" >How many Ingredients? </label>
-                            <input className="submit__input" type="number" />
-                        </div>
-                    </div>
-                    <div className="submit__inputs-container">
-                        <div>
-                            <Input id="1"/>
-                            <Input id="2"/>
-                            <Input id="3"/>
-                            <Input id="4"/>
-                            <Input id="5"/>
-                            <Input id="6"/>
-                        </div>
-                        <div>
-                            <Input id="7"/>
-                            <Input id="8"/>
-                            <Input id="9"/>
-                            <Input id="10"/>
-                            <Input id="11"/>
-                            <Input id="12"/>
-                        </div>
-                    </div>
-                    <div className="submit__button-container">
-                        <button className="submit__button">Submit!</button>
-                    </div>
-                </form>
-            </div>
+    const [count, setCount] = useState(1);
+    
+    return (
+        <div className="form">
+            <form className="form__form">
+                <div className="form__header">
+                    <h4 className="form__title">Dish name</h4>
+                    <input className="form__name-input" type="text" />
+                </div>
+                <div className="form__sub-header" >How many Ingredients? {count}</div>
+                <div className="form__inputs">
+                    {
+                        Array.from(new Array(count)).map((item, index) => <Input key={index} id={index + 1} />)
+                    }
+                </div>
+                <button type="button" className="form__button" onClick={() => setCount(count + 1)}>Add Ingredient</button>
+                <button type="submit" className="form__button">Submit!</button>
+            </form>
             <style jsx>{`
-            
-                .submit {
-                    background-color: #cc2936;
+        
+                .form {
+                    background-color: #3962ad;
                     width: 500px;
                     margin: 20px auto;
-                    padding: 50px;
+                    padding: 20px;
                     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
                     border-radius: 10px;  
                 }
 
-                .submit__header {
+                .form__header {
+                    margin: 10px;
+                    text-align: center;
+                }
+
+                .form__title {
+                    margin: 5px auto;
+                }
+
+                .form__name {
+                    display: block;
+                }
+
+                .form__sub-header {
+                    margin: 10px 5px;
+                    text-align: center;
+                }
+
+                .form__name-input {
+                    text-align: center;
+                    font-weight: 500;
+                    height: 30px;
+                    min-width: 200px;
+                    padding: 5px;
+                    border: 1px solid lightgrey;
+                    border-radius: 4px;
+                    transition: border-color 0.3s ease;
+                }
+
+                .form__inputs {
                     display: flex;
                     flex-direction: column;
-                }
-
-                .submit__input {
-                    width: 10%;
-                }
-
-                .submit__inputs-container {
-                    display: flex;
-                    flex-direction: row;
-                    width: 100%;
                     justify-content: center;
-                    align-items: center;
+                    padding: 0 20px;
                 }
 
-                .submit__button-container {
-                    display: flex:
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                }
-
-                .submit__button {
-                    
+                .form__button {
+                    display: block;
+                    margin: 5px auto;
+                    min-width: 200px;
                     padding: 10px;
-                    margin: 10px auto;
+                    background-color: #ff8800;
+                    color: white;
+                    border: none;
+                    font-size: 16px;
+                    cursor: pointer;
+                    border-radius: 10px;
+                    transition: background 0.3s ease;
                 }
 
-            
-            `}</style>
-        </Layout>
-      );
-    }
+                .form__button:hover {
+                    opacity: 0.8;
+                    background-color: #70703d;
+                }
+
+                @media screen and (max-width: 540px) {
+                    .form {
+                        width: 350px;
+                    }
+
+                    .input__box {
+                        display: block;
+                        margin: 5px auto;
+                    }
+                }
+
+        `}</style>
+    </div>
+    );
+}

@@ -4,7 +4,7 @@ export default () => {
       <div className="nav__container">
         <div className="nav__title">
           <img className="nav__logo" src="/static/images/logos/logo.png"/>
-          <a className="nav__home"href="/">Meal Planner</a>
+          <a className="nav__home" href="/">Meal Planner</a>
         </div>
         <ul className="nav__links">
           <li className="nav__link"><a className="nav__anchor" href="/signup">Sign Up</a></li>
@@ -22,6 +22,11 @@ export default () => {
           text-decoration: none;
           color: black;
           font-size: 30px;
+          transition: 0.5s ease;
+        }
+
+        .nav__home:hover {
+          color: white;
         }
 
         .nav__title {
