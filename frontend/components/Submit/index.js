@@ -57,6 +57,7 @@ export default () => {
                     padding: 5px;
                     border: 1px solid lightgrey;
                     border-radius: 4px;
+                    outline-color: #de6f07;
                     transition: border-color 0.3s ease;
                 }
 

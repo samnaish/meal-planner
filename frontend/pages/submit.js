@@ -1,5 +1,4 @@
 import Layout from "../components/Layout";
-import Heading from '../components/Heading';
 import Submit from "../components/Submit";
 
 export default () => {
@@ -13,13 +12,13 @@ export default () => {
 
                     .submit__background {
                         display: flex;
-                        height: auto;
+                        min-height: 100vh;
                         flex-direction: column;
                         background-image: url(https://lovefoodhatewaste.ca/wp-content/uploads/2018/06/FoodBackground.jpg);
                         box-shadow: 0 3000px rgba(20, 0, 20, 0.3) inset;
                         background-size: cover;
                         background-position: center;
-                        flex-grow: 1;
+                        flex-grow: 2;
                     }
 
                     .submit__title {
