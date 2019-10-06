@@ -1,5 +1,4 @@
 
-
 export default () => {
     return (
         <div className="about">
@@ -21,7 +20,7 @@ export default () => {
                 }
 
                 .about__logo {
-                    margin: 15px;
+                    margin: 15px 0;
                 }
 
                 .about__text {

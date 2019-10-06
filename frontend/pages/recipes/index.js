@@ -65,6 +65,7 @@ const RecipesPage = ({ dishes }) => {
 
                     .recipes__list {
                         display: flex;
+                        height: 100%;
                         flex-direction: row;
                         flex-wrap: wrap;
                         width: 80%;
@@ -117,7 +118,7 @@ const RecipesPage = ({ dishes }) => {
 
                     .recipe__update-container {
                         overflow-y: auto;
-                        max-height: 45vh;
+                        max-height: 48vh;
                     }
 
                     .recipe__corner {
