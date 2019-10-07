@@ -11,7 +11,6 @@ export default () => {
           <li className="nav__link"><a className="nav__anchor" href="/signup">Sign Up</a></li>
           <li className="nav__link"><a className="nav__anchor" href="/login">Login</a></li>
         </ul>
-        
       </div>
       <style>{`
 
