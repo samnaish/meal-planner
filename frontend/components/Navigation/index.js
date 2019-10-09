@@ -8,6 +8,7 @@ export default () => {
         </div>
         <ul className="nav__links">
           <li className="nav__link"><a className="nav__anchor" href="/about">About</a></li>
+          <li className="nav__link"><a className="nav__anchor" href="/search">Search</a></li>
           <li className="nav__link"><a className="nav__anchor" href="/signup">Sign Up</a></li>
           <li className="nav__link"><a className="nav__anchor" href="/login">Login</a></li>
         </ul>
