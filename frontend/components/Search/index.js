@@ -71,7 +71,16 @@ export default () => {
                     }
 
                     .search__result-item {
+                        font-weight: 500;
+                        text-decoration: none;
+                        color: black;
+                        transition: 0.3s ease;
                     }
+
+                    .search__result-item:hover {
+                        color: #710000;
+                    }
+
 
                 `}</style>
         </div>
