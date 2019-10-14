@@ -118,7 +118,7 @@ const RecipesPage = ({ dishes }) => {
 
                     .recipe__update-container {
                         overflow-y: auto;
-                        max-height: 48vh;
+                        max-height: 122vh;
                     }
 
                     .recipe__corner {

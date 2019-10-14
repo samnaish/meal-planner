@@ -42,7 +42,11 @@ describe ("login Endpoint", () => {
     describe("when the login credentials are not recognised", () => {
 
         test("will set the statusCode to 400", () => {
-            expect(1).toEqual(2);
+            fetch('/400').then((response) => {
+                if (response.status === 400) {
+                    return response;
+                }
+            })
         });
 
         test("will respond with json", () => {

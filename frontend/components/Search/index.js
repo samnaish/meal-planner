@@ -79,6 +79,7 @@ export default () => {
 
                     .search__result-item:hover {
                         color: #710000;
+                        text-decoration: underline;
                     }
 
 
