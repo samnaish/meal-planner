@@ -7,9 +7,11 @@ module.exports = (req, res) => {
             error: "Please provide a search term."
         })
     }
+
     const results = foodData.filter((dish) => {
         return dish.name.toLowerCase().includes(term.toLowerCase());
-    })
+    });
+
     return res.json({
         results,
         count: results.length

@@ -2,11 +2,11 @@ const login = require('../routes/login');
 
 describe ("login Endpoint", () => {
     const mockGoodLogin = {
-        usernmane:"angela",
+        username:"angela",
         password: "baking"
     };
     const mockBadLogin = {
-        usernmane: "hello",
+        username: "hello",
         password: "crippin"
     };
 
@@ -15,9 +15,17 @@ describe ("login Endpoint", () => {
     };
 
     const mockRes = {
-        status: jest.fn(),
+        status: jest.fn(() => { 
+            const { json } = mockRes;
+            return { json };
+        }),
         json: jest.fn()
     };
+
+    afterEach(() => {
+        mockRes.status.mockClear();
+        mockRes.json.mockClear();
+    })
 
     describe("when the login credentials are acceptable", () => {
 
@@ -31,9 +39,9 @@ describe ("login Endpoint", () => {
         });
 
         test("responds with an object with a result property equal to 'Success'", () => {
-            expect(mockGoodLogin).toEqual({
-                usernmane:"angela",
-                password: "baking"
+            login(mockReq, mockRes);
+            expect(mockRes.json).toHaveBeenCalledWith({
+                result: "Success"
             });
         })
 
@@ -41,12 +49,13 @@ describe ("login Endpoint", () => {
 
     describe("when the login credentials are not recognised", () => {
 
+        beforeAll(() => {
+            mockReq.body = mockBadLogin;
+        })
+
         test("will set the statusCode to 400", () => {
-            fetch('/400').then((response) => {
-                if (response.status === 400) {
-                    return response;
-                }
-            })
+            login(mockReq, mockRes);
+            expect(mockRes.status).toHaveBeenCalledWith(400);
         });
 
         test("will respond with json", () => {
@@ -55,10 +64,10 @@ describe ("login Endpoint", () => {
         });
 
         test("responds with an object with a result property equal to 'Failure'", () => {
-            expect(mockBadLogin).toEqual({
-                usernmane: "hello",
-                password: "crippin"
-            });
+            login(mockReq, mockRes);
+            expect(mockRes.json).toHaveBeenCalledWith({
+                result: "Failure"
+            })
         })
 
     });

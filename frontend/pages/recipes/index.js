@@ -46,12 +46,14 @@ const RecipesPage = ({ dishes }) => {
                             <h4 className="recipe__update-post">Posts Feed</h4>
                             <Update name="Alex Naish" passage="Added the Thai green curry to my favourites!"/>
                             <Update name="Alex Naish" passage="Added the Thai green curry to my favourites!"/>
-                            <Update name="Alex Naish" passage="Added the Thai green curry to my favourites!"/>
+                            <Update name="Angela" passage="The Three fish pie is going to added to my favourites!"/>
                             <Update name="Alex Naish" passage="Added the Thai green curry to my favourites!"/>
                             <Update name="Alex Naish" passage="Added the Thai green curry to my favourites!"/>
                             <Update name="Alex Naish" passage="Added the Thai green curry to my favourites!"/>
                             <Update name="Richard Naish" passage="There's is still no recipe for a hard boiled egg!"/>
                             <Update name="Sara Szopko" passage="Where's the recipes with chocolate?"/>
+                            <Update name="Richard Naish" passage="There's is still no recipe for a hard boiled egg!"/>
+                            <Update name="Alex Naish" passage="Added the Thai green curry to my favourites!"/>
                             <Update name="Angela" passage="The Three fish pie is going to added to my favourites!"/>
                             <Update name="Bob" passage="Soo many choices so little time!"/>
                         </div>
@@ -118,7 +120,7 @@ const RecipesPage = ({ dishes }) => {
 
                     .recipe__update-container {
                         overflow-y: auto;
-                        max-height: 122vh;
+                        max-height: 158vh;
                     }
 
                     .recipe__corner {

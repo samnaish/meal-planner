@@ -5,7 +5,7 @@ module.exports = (req, res) => {
     if (username === "angela" && password === "baking") {
         return res.json({
             result: "Success"
-        })
+        });
     }
 
     return res.status(400).json({
