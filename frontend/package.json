@@ -4,11 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "next",
     "build": "next build",
-    "dev": "next -p $PORT",
-    "now-dev": "npm run dev",
-    "now-build": "npm run build",
-    "start": "next start -p $PORT",
+    "start": "next start",
     "test": "jest"
   },
   "jest": {

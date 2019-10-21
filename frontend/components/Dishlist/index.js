@@ -1,14 +1,14 @@
 import React from 'react';
 
-const Dish = ({ name, image, servings, cookTime }) => {
+export const Dish = ({ name, image, servings, cookTime }) => {
     return(
         <div className="dish">
-            <strong>
+            <strong data-test-prop="name">
                 {name}
             </strong>
             <img className="dish__image" src={image} />
             <div className="dish__info">
-                Serves <strong>{servings}</strong> in <strong>{cookTime}</strong>.
+                Serves <strong data-test-prop="servings">{servings}</strong> in <strong data-test-prop="cookTime">{cookTime}</strong>.
             </div>
             <style jsx>
                 {`
@@ -37,7 +37,6 @@ const Dish = ({ name, image, servings, cookTime }) => {
     )
 }
 
-
 export default ({ dishes }) => {
     return (
         <div className="dish-list">
@@ -45,7 +44,7 @@ export default ({ dishes }) => {
                 dishes.slice(0, 2).map((dish, index) => {
                     return (
                         <div key={index} className="dish-list__item">
-                            <Dish name={dish.name} image={dish.image} servings={dish.servings} cookTime={dish.time.cook}/>
+                            <Dish name={dish.name} image={dish.image} servings={dish.servings} cookTime={dish.time.cook} />
                         </div>
                     )
                 })

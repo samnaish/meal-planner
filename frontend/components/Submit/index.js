@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Input from "../Input";
+import IngredientInput from "../IngredientInput";
 
 export default () => {
     const [count, setCount] = useState(1);
@@ -14,7 +14,7 @@ export default () => {
                 <div className="form__sub-header" >How many Ingredients? {count}</div>
                 <div className="form__inputs">
                     {
-                        Array.from(new Array(count)).map((item, index) => <Input key={index} id={index + 1} />)
+                        Array.from(new Array(count)).map((item, index) => <IngredientInput key={index} id={index + 1} />)
                     }
                 </div>
                 <button type="button" className="form__button" onClick={() => setCount(count + 1)}>Add Ingredient</button>

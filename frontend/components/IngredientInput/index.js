@@ -5,13 +5,13 @@ export default ({ id }) => {
     return (
         <div className="input">
             <div className="input__ingredient">
-                <label htmlFor={elId} className="input__label" >Ingredient: {id}</label>
+                <label htmlFor={elId} className="input__label">Ingredient: {id}</label>
                 <input id={elId} className="input__box" type="text" />
             </div>
             <div className="input__measurement">
-                <label id={elId} className="input__label">Unit: </label>
-                <select className="input__option-box" name="measurement">
-                    <option value="none">-</option>
+                <label htmlFor={`${elId}-unit`} className="input__label">Unit: </label>
+                <select id={`${elId}-unit`} className="input__option-box" name="measurement">
+                    <option value="">None</option>
                     <option value="grams">Grams</option>
                     <option value="tbsp">TBSP</option>
                     <option value="ml">ML</option>

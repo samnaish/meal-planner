@@ -4,11 +4,11 @@
     "regions": ["lhr1"],
     "builds": [
         {
-            "src": "frontend/next.config.js",
+            "src": "/frontend/package.json",
             "use": "@now/next"
         },
         {
-          "src": "backend/**/*.js",
+          "src": "/backend/**/*.js",
           "use": "@now/node"
         }
     ],
