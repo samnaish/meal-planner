@@ -1,7 +1,5 @@
 const specific = require("../routes/food/specific");
 
-jest.mock('../routes/food/food.json');
-
 describe("Specific Endpoint", () => {
     const mockReq = {
         query: {}
@@ -21,14 +19,6 @@ describe("Specific Endpoint", () => {
     })
 
     describe("when an item id is found", () => {
-
-        xtest("finds dish", () => {
-            mockReq.query.id = "dummy term";
-            specific(mockReq, mockRes);
-            expect(mockRes.json).toHaveBeenCalledWith({
-                dish: []
-            })
-        })
 
         test("returns a json response", () => {
             specific(mockReq, mockRes);

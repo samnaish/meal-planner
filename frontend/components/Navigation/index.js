@@ -1,3 +1,6 @@
+import React from 'react';
+import NavigationLinks from '../NavigationLinks';
+
 export default () => {
   return (
     <div className="nav">
@@ -6,12 +9,7 @@ export default () => {
           <img className="nav__logo" src="/static/images/logos/logo.png"/>
           <a className="nav__home" href="/">Meal Planner</a>
         </div>
-        <ul className="nav__links">
-          <li className="nav__link"><a className="nav__anchor" href="/about">About</a></li>
-          <li className="nav__link"><a className="nav__anchor" href="/search">Search</a></li>
-          <li className="nav__link"><a className="nav__anchor" href="/signup">Sign Up</a></li>
-          <li className="nav__link"><a className="nav__anchor" href="/login">Login</a></li>
-        </ul>
+        <NavigationLinks />
       </div>
       <style>{`
 
@@ -50,33 +48,6 @@ export default () => {
           flex-direction: row;
           align-items: center;
           justify-content: space-between;
-        }
-
-        .nav__links {
-          list-style: none;
-        }
-
-        .nav__link {
-          float: left;
-          padding: 0 5px;
-        }
-
-        .nav__anchor:hover {
-          color: black;
-          background-color: #fff;
-        }
-
-        .nav__anchor {
-          text-decoration: none;
-          color: black;
-          padding: 10px;
-          display: inline-block;
-        }
-
-        .nav__tag {
-          list-style: none;
-          justify-content: left;
-          padding: 10px;
         }
 
       `}</style>

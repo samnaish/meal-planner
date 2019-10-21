@@ -1,3 +1,5 @@
+import React from 'react';
+
 const Dish = ({ name, image, servings, cookTime }) => {
     return(
         <div className="dish">

@@ -1,3 +1,4 @@
+import React from 'react';
 
 export default ({ id }) => {
     const elId = `input-${id}`;
@@ -9,7 +10,7 @@ export default ({ id }) => {
             </div>
             <div className="input__measurement">
                 <label id={elId} className="input__label">Unit: </label>
-                <select className="input__box" name="measurement">
+                <select className="input__option-box" name="measurement">
                     <option value="none">-</option>
                     <option value="grams">Grams</option>
                     <option value="tbsp">TBSP</option>
@@ -31,7 +32,7 @@ export default ({ id }) => {
                     margin: 10px 0;
                 }
 
-                .input__box {
+                .input__box, input__option-box {
                     height: 30px;
                     min-width: 200px;
                     padding: 5px;
