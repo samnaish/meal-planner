@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 import fetch from 'isomorphic-unfetch';
 
@@ -16,15 +17,15 @@ export default () => {
                 <input className="search__bar" onChange={(ev) => updateSearchTerm(ev.target.value)}/>
                 <button className="search__button" onClick={() => findResults()}>search</button>
             </div>
-                {
-                    searchResults.map(res => {
-                        return (
-                            <div className="search__result">
-                                <a className="search__result-item" href={`/recipes/${res.id}`}>{res.name}</a>
-                            </div>
-                        )
-                    })
-                }
+            {
+                searchResults.map(res => {
+                    return (
+                        <div className="search__result">
+                            <a className="search__result-item" href={`/recipes/${res.id}`}>{res.name}</a>
+                        </div>
+                    )
+                })
+            }
                 <style jsx>{`
 
                     .search {
