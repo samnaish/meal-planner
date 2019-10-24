@@ -4,29 +4,26 @@
     "regions": ["lhr1"],
     "builds": [
         {
-            "src": "/frontend/package.json",
+            "src": "frontend/next.config.js",
             "use": "@now/next"
         },
         {
-          "src": "/backend/**/*.js",
+          "src": "backend/**/*.js",
           "use": "@now/node"
         }
     ],
     "routes": [
         {
             "src": "/api/food/(.+)",
-            "dest": "/backend/routes/food/specific.js?id=$1"
+            "dest": "backend/routes/food/specific.js?id=$1"
         },
         {
             "src": "/api/(.*)",
-            "dest": "/backend/routes/$1"
+            "dest": "backend/routes/$1"
         },
         {
             "src": "/(.*)",
-            "dest": "/frontend/$1",
-            "headers": {
-                "cache-control": "s-maxage=31536000, maxage=0, stale-while-revalidate"
-            }
+            "dest": "frontend/$1"
         }
     ]
 }
