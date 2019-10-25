@@ -7,7 +7,7 @@ import Heading from "../components/Heading";
 import Search from "../components/Search";
 
 
-export default () => {
+const Search = () => {
     return (
         <Layout>
             <Container>
@@ -18,3 +18,13 @@ export default () => {
         </Layout>
     );
 }
+
+Search.getInitialProps = async ({ req }) => {
+    function generateServerSideURL(req) {
+        return req.headers['x-forwarded-proto'] 
+            ? `${req.headers['x-forwarded-proto']}://${req.headers['x-forwarded-host']}`
+            :'http://localhost:3000';
+    }
+};
+
+export default Search;
