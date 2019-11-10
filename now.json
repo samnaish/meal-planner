@@ -25,5 +25,10 @@
             "src": "/(.*)",
             "dest": "frontend/$1"
         }
-    ]
+    ],
+    "env": {
+        "JWT_SECRET": "@jwtsecret",
+        "MONGODB_URI": "@mongodb_uri",
+        "MONGODB_NAME": "@mongodb_name"
+    }
 }

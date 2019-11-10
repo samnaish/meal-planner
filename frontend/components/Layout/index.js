@@ -9,7 +9,7 @@ export default ({ children }) => {
             <Navigation />
             <main className="content">{children}</main>
             <Footer />
-            <style jsx global>{`
+            <style jsx="true" global="true">{`
                 * {
                     box-sizing: border-box;
                 }

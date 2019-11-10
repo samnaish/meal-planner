@@ -1,3 +1,4 @@
+import React from 'react';
 import fetch from 'isomorphic-unfetch';
 import Link from 'next/link';
 import Layout from "../components/Layout";
@@ -38,7 +39,7 @@ const HomePage = ({ foodData }) => {
                     </Link>
                 </div>
             </div>
-            <style jsx>{`
+            <style jsx="true">{`
 
                 .welcome-splash {
                     background-image: url(/static/images/takeout.jpg);
