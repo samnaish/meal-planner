@@ -13,6 +13,14 @@ const userSchema = new Schema ({
     first_name: {
         required: true,
         type: String
+    },
+    last_name: {
+        required: true,
+        type: String
+    },
+    dob: {
+        required: true,
+        type: String
     }
 });
 
