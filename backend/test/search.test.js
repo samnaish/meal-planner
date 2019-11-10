@@ -1,16 +1,30 @@
+const database = require('../services/database');
 const search = require("../routes/search");
 
-jest.mock('../routes/food/food.json');
+jest.mock('../services/database');
 
-describe("Search Endpoint", () => {
+describe.only("Search Endpoint", () => {
+
+    const dummyConnection = 'my-connection';
+    const dummyModel = {
+        find: jest.fn().mockImplementation(({ name }) => {
+            if (name.test('dummy-term')) return Promise.resolve([])
+            return Promise.resolve(dummyResults);
+        })
+    };
+    const dummyResults = [1,2,3];
 
     const mockReq = {
         query: {}
     }
-
     const mockRes = {
         json: jest.fn()
     }
+
+    beforeAll(() => {
+        database.connect.mockImplementation(() => Promise.resolve(dummyConnection));
+        database.loadModel.mockImplementation(() => dummyModel);
+    });
 
     afterEach(() => {
         mockRes.json.mockClear();
@@ -18,8 +32,8 @@ describe("Search Endpoint", () => {
 
     describe("when there is no term in req.query", () => {
 
-        test("returns a json response with an error", () => {
-            search(mockReq, mockRes);
+        test("returns a json response with an error", async () => {
+            await search(mockReq, mockRes);
             expect(mockRes.json).toBeCalledWith({
                 error: "Please provide a search term."
             })
@@ -28,26 +42,22 @@ describe("Search Endpoint", () => {
 
     describe("when there is a term in req.query", () => {
 
-        test("but the query doesnt match any results", () => {
+        test("but the query doesnt match any results", async () => {
             mockReq.query.term = 'dummy-term';
-            search(mockReq, mockRes);
+            await search(mockReq, mockRes);
             expect(mockRes.json).toBeCalledWith({
                 results: [],
                 count: 0
             });
         });
 
-        xtest("when there is a partial match", () => {
+        test("when there is a match", async () => {
             mockReq.query.term = 'test';
-            search(mockReq, mockRes);
+            await search(mockReq, mockRes);
             expect(mockRes.json).toBeCalledWith({
-                results: [],
-                count: 1
+                results: dummyResults,
+                count: dummyResults.length
             });
-        });
-
-        xtest("when all the results match", () => {
-
         });
     });
 })
