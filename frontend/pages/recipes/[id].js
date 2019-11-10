@@ -1,8 +1,10 @@
+import React from 'react';
+
 import fetch from 'isomorphic-unfetch';
 import Layout from "../../components/Layout";
 import Container from "../../components/Container";
 
-const RecipePage = ({ dish }) => {
+const RecipePage = ({ dish = { time: {}, ingredients: [] } }) => {
     
     return (
         <Layout>
@@ -196,12 +198,11 @@ const RecipePage = ({ dish }) => {
 
 RecipePage.getInitialProps = async ({ req, query }) => {
     const baseUrl = req ? `${req.headers['x-forwarded-proto']}://${req.headers['x-forwarded-host']}` : '';
-    const foodRequest = await fetch(`${baseUrl}/api/food`);
-    const { data } = await foodRequest.json();
+    console.log('`${baseUrl}/api/food/${query.id}', `${baseUrl}/api/food/${query.id}`);
+    const foodRequest = await fetch(`${baseUrl}/api/food/${query.id}`);
+    const { dish } = await foodRequest.json();
     return {
-        dish: data.find((dish) => {
-            return dish.id === query.id
-        })
+        dish
     }
 }
 export default RecipePage;

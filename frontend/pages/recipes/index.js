@@ -1,3 +1,4 @@
+import React from 'react';
 import fetch from 'isomorphic-unfetch';
 
 import Layout from "../../components/Layout";
@@ -15,8 +16,8 @@ const RecipesPage = ({ dishes }) => {
                         {
                             dishes.map((dish) => {
                                 return (
-                                    <div key={dish.id} className="recipes__list-item">
-                                        <Recipe id={dish.id} name={dish.name} image={dish.image}/>
+                                    <div key={dish._id} className="recipes__list-item">
+                                        <Recipe id={dish._id} name={dish.name} image={dish.image}/>
                                     </div>
                                 )
                             })

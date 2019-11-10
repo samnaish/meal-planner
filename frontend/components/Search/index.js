@@ -21,7 +21,7 @@ export default () => {
                 searchResults.map(res => {
                     return (
                         <div className="search__result">
-                            <a className="search__result-item" href={`/recipes/${res.id}`}>{res.name}</a>
+                            <a className="search__result-item" href={`/recipes/${res._id}`}>{res.name}</a>
                         </div>
                     )
                 })
