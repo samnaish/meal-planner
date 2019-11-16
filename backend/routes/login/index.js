@@ -36,6 +36,7 @@ module.exports = async (req, res) => {
                 first_name: foundUser.first_name
             }
         }, process.env.JWT_SECRET, { expiresIn: 30 * 60 });
+        
         return res.json({
             result: "Success",
             token

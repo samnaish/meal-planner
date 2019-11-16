@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import fetch from 'isomorphic-unfetch';
 
 export default () => {
@@ -10,7 +9,8 @@ export default () => {
         const request = await fetch(`/api/search?term=${searchTerm}`);
         const jsonData = await request.json();
         updateSearchResults(jsonData.results);
-    }
+    };
+    
     return (
         <div className="search">
             <div className="search__bar-container">

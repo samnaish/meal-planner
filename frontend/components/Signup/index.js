@@ -1,23 +1,54 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { create } from 'domain';
+import { Router } from 'next/router'
 
 export default () => {
+
+    const [ error, setError ] = useState('');
+    const [ submitting ,setSubmitting] = useState(false);
+
+    const createAccont = async (ev) => {
+        ev.preventDefault();
+        const data = new FormData(ev.target);
+        setSubmitting(true);
+        setError('');
+        const createResponse = await fetch('/api/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(Object.values(data))
+        })
+        const accountData = await createResponse.json();
+        if(accountData.error) {
+            setError(accountData.error);
+        } else {
+            Router.push('/login');
+        }
+        setSubmitting(false);
+        console.log('accountData' ,accountData)
+    };
+
     return(
-        <div className="signin">
-            <form className="signin__form">
-                <input className="signin__input" type="text" placeholder="First Name" required="required" />
-                <input className="signin__input" type="text" placeholder="Last Name" required="required" />
-                <input className="signin__input" type="text" placeholder="Email Address" required="required" />
-                <input className="signin__input" type="text" placeholder="Password" required="required" />
-                <input className="signin__input" type="text" placeholder="Confirm Password" required="required" />
-                <button type="submit" className="signin__button">Join</button>
-                <footer className="signin__footer">
-                    <span className="signin__caption">Got an Account? </span>
-                    <a className="signin__create" href="/login">login!</a>
+        <div className="signup">
+            <form className="signup__form" onSubmit={createAccont}>
+                <input className="signup__input" type="text" placeholder="First Name" required="required" />
+                <input className="signup__input" type="text" placeholder="Last Name" required="required" />
+                <input className="signup__input" type="text" placeholder="Email Address" required="required" />
+                <input className="signup__input" type="password" placeholder="Password" required="required" />
+                <input className="signup__input" type="password" placeholder="Confirm Password" required="required" />
+                <button disabled={submitting} type="submit" className="signup__button">Join</button>
+                <footer className="signup__footer">
+                    <span className="signup__caption">Got an Account? </span>
+                    <a className="signup__create" href="/login">login!</a>
                 </footer>
+                {
+                    error ? <span className="signup__error"> There was an Error</span> : ''
+                }
             </form>
             <style jsx>{`
 
-                .signin {
+                .signup {
                     background-color: #F5853F;
                     width: 400px;
                     margin: 20px auto;
@@ -26,7 +57,7 @@ export default () => {
                     border-radius: 10px;  
                 }
 
-                .signin__input {
+                .signup__input {
                     padding: 0 10px;
                     margin: 0 auto;
                     margin-bottom: 20px;
@@ -38,13 +69,13 @@ export default () => {
                     border-radius: 10px;
                 }
 
-                .signin__form {
+                .signup__form {
                     display: flex;
                     flex-direction: column;
                     align-items: center;
                 }
 
-                .signin__button {
+                .signup__button {
                     margin-bottom: 20px;
                     padding: 10px;
                     width: 45%;
@@ -59,18 +90,23 @@ export default () => {
                     cursor: pointer;
                     border-radius: 10px;
                 }
+
+                signup__button:disabled {
+                    cursor: not-allowed;
+                    background-color: grey;
+                }
                 
                 button:hover {
                     opacity: 0.8;
                     background-color: #615d6c;
                 }
 
-                .signin__footer {
+                .signup__footer {
                     text-align: center;
                     color: #666;
                 }
                 
-                .signin__create {
+                .signup__create {
                     color: white;
                     text-decoration: none;
                     border-bottom-width: 0;
@@ -78,11 +114,11 @@ export default () => {
                     transition: border 0.3s ease;
                 }
                 
-                .signin__create:hover {
+                .signup__create:hover {
                     color: #0E4749;
                 }
 
-                .signin__caption {
+                .signup__caption {
                     color: white;
                 }
             `}</style>

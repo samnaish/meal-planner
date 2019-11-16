@@ -4,7 +4,7 @@ export default ({ children }) => {
     return (
         <div>
             {children}
-            <style jsx>{`
+            <style jsx={true}>{`
                 div {
                     max-width: 1200px;
                     width: 100%;

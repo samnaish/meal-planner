@@ -1,18 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export default () => {
+
+    const [error, setError] = useState('');
+    const [submitting, setSubmitting] = useState(false);
+
+    const submitForm = async (ev) => {
+        ev.preventDefault();
+        const data = new FormData(ev.target);
+        setSubmitting(true);
+        setError('');
+        const loginResponse = await fetch('/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(Object.fromEntries(data))
+        });
+        const loginData = await loginResponse.json();
+        setSubmitting(false);
+
+        if(loginData.error) {
+            setError(loginData.error);
+        }
+
+    };
+
     return (
         <div className="login-box">
-            <form method="post">
-                <input className="login-box__input" type="text" placeholder="username" required="required" />
-                <input className="login-box__input" type="text" placeholder="password" required="required" />
-                <button type="submit" className="login-box__login-button">login</button>
+            {
+                error ? <h1>SHITBALLS THERE WAS AN ERROR: {error}</h1> : ''
+            }
+            <form onSubmit={submitForm}>
+                <input className="login-box__input" type="text" name="email" placeholder="email" required="required" />
+                <input className="login-box__input" type="password" name="password" placeholder="password" required="required" />
+                <button disabled={submitting} type="submit" className="login-box__login-button">login</button>
                 <footer className="login-box__footer">
                     <span className="login-box__caption">Not registered? </span>
                     <a className="login-box__create-account" href="/signup">Create an account</a>
                 </footer>
             </form>
-            <style>{`
+            <style jsx>{`
             .login-box {
                 background-color: #cc2936;
                 width: 500px;
@@ -47,6 +75,11 @@ export default () => {
                 text-transform: uppercase;
                 cursor: pointer;
                 border-radius: 10px;
+            }
+
+            .login-box__login-button:disabled {
+                cursor: not-allowed;
+                background-color: grey;
             }
             
             button:hover {

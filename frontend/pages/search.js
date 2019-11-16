@@ -12,7 +12,6 @@ const Search = () => {
                 <Heading title="Search for a recipe"/>
                 <SearchComponent />
             </Container>
-            
         </Layout>
     );
 }
