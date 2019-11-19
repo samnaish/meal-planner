@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
+import Router from 'next/router'
 
-export default () => {
-
+const LoginComponent = () => {
     const [error, setError] = useState('');
     const [submitting, setSubmitting] = useState(false);
-
     const submitForm = async (ev) => {
         ev.preventDefault();
         const data = new FormData(ev.target);
@@ -22,7 +21,14 @@ export default () => {
 
         if(loginData.error) {
             setError(loginData.error);
+            return;
         }
+
+        // get token from loginData
+        // save token somewhere
+        // redirect to recipes page
+
+        Router.push("/recipes");
 
     };
 
@@ -119,5 +125,7 @@ export default () => {
             `}</style>
         </div>
     );
-}
+};
+
+export default LoginComponent;
     

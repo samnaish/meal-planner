@@ -37,7 +37,7 @@ export const Dish = ({ name, image, servings, cookTime }) => {
     )
 }
 
-export default ({ dishes }) => {
+export default ({ dishes = [] }) => {
     return (
         <div className="dish-list">
             {

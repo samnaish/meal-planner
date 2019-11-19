@@ -12,9 +12,15 @@ module.exports = async (req, res) => {
         try {
             await userObject.validate();
         } catch (error) {
+
+            const failures = Object.keys(error.errors).reduce((acc, key) => {
+                acc[key] = error.errors[key].message;
+                return acc;
+            }, {})
+
             return res.status(400).json({
                 error: 'Validation failed',
-                failed: Object.keys(error.errors)
+                failures
             });
         }
 

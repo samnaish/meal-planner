@@ -29,6 +29,8 @@
     "env": {
         "JWT_SECRET": "@jwtsecret",
         "MONGODB_URI": "@mongodb_uri",
-        "MONGODB_NAME": "@mongodb_name"
+        "MONGODB_NAME": "@mongodb_name",
+        "MONGODB_USER": "@mongodb_user",
+        "MONGODB_PASS": "@mongodb_pass"
     }
 }
