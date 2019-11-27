@@ -15,14 +15,27 @@
     "routes": [
         {
             "src": "/api/food/(.+)",
+            "methods": ["GET"],
             "dest": "backend/routes/food/specific.js?id=$1"
         },
         {
+            "src": "/api/food/",
+            "methods": ["POST"],
+            "dest": "backend/routes/food/create.js"
+        },
+        {
+            "src": "/api/food/(.*)",
+            "methods": ["GET", "POST", "PUT", "DELETE"],
+            "dest": "backend/routes/food/$1"
+        },
+        {
             "src": "/api/(.*)",
+            "methods": ["GET", "POST", "PUT", "DELETE"],
             "dest": "backend/routes/$1"
         },
         {
             "src": "/(.*)",
+            "methods": ["GET"],
             "dest": "frontend/$1"
         }
     ],

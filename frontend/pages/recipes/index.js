@@ -6,7 +6,7 @@ import Recipe from "../../components/Recipe";
 import Container from "../../components/Container";
 import Update from "../../components/Update";
 
-const RecipesPage = ({ dishes }) => {
+const RecipesPage = ({ dishes = [] }) => {
     const options = { year: 'numeric', month: 'long'};
     return(
         <Layout>

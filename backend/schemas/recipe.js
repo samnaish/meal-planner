@@ -18,24 +18,24 @@ const IngredientSchema = new Schema({
 
 const recipe = new Schema({
     name: {
-        required: true,
+        required: [true, 'Please provide a name.'],
         type: String
     },
     image: {
-        required: true,
+        required: [true, 'Please provide a dish image.'],
         type: String       
     },
     servings: {
-        required: true,
+        required: [true, 'Please provide a servings count.'],
         type: Number
     },
     time: {
         prep: {
-            required: true,
+            required: [true, 'Please provide a prep time.'],
             type: Number
         },
         cook: {
-            required: true,
+            required: [true, 'Please provide a cook time.'],
             type: Number
         }
     },

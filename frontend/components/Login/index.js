@@ -37,7 +37,7 @@ const LoginComponent = () => {
             {
                 error ? <h1>SHITBALLS THERE WAS AN ERROR: {error}</h1> : ''
             }
-            <form onSubmit={submitForm}>
+            <form className="login-box__form" onSubmit={submitForm}>
                 <input className="login-box__input" type="text" name="email" placeholder="email" required="required" />
                 <input className="login-box__input" type="password" name="password" placeholder="password" required="required" />
                 <button disabled={submitting} type="submit" className="login-box__login-button">login</button>
@@ -47,23 +47,31 @@ const LoginComponent = () => {
                 </footer>
             </form>
             <style jsx>{`
+
             .login-box {
-                background-color: #cc2936;
+                background-color: #F5853F;
                 width: 500px;
                 margin: 20px auto;
-                padding: 50px;
+                padding: 40px;
                 box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
                 border-radius: 10px;  
             }
+
+            .login-box__form {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
             
             .login-box__input {
-                margin-bottom: 20px;
-                padding-left: 20px;
+                margin-bottom: 10px;
+                padding: 0 10px;
                 height: 40px;
-                width: 80%;
+                width: 100%;
                 font-size: 16px;
                 background-color: lightgrey;
                 border: none;
+                border-radius: 5px;
             }
             
             .login-box__login-button {
@@ -71,7 +79,7 @@ const LoginComponent = () => {
                 padding: 10px;
                 width: 45%;
                 height: 40px;
-                background-color: #ffae03;
+                background-color: #297373;
                 color: white;
                 display: inline-block;
                 text-decoration: none;
