@@ -21,7 +21,7 @@ module.exports = async (req, res) => {
             });
         }
 
-        const foundRecipe = await Recipe.findOne({name: req.body.name})
+        const foundRecipe = await Recipe.findOne({ name: req.body.name })
         if (foundRecipe) {
             return res.status(409).json({
                 error: 'We already have that recipe.'
