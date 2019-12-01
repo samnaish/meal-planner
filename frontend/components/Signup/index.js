@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 
+import ButtonComponent from '../ButtonComponent';
+
 export default () => {
 
     const [ error, setError ] = useState('');
@@ -68,7 +70,7 @@ export default () => {
                         { failures.password ? <span className="signup__error">{failures.password}</span> : '' }
                         <input className="signup__input" name="confirm_password" type="password" placeholder="Confirm Password" required="required" />
                         { failures.confirm_password ? <span className="signup__error">{failures.confirm_password}</span> : '' }
-                        <button disabled={submitting} type="submit" className="signup__button">Join</button>
+                        <ButtonComponent val={submitting} label="Join" type="submit"/>
                         <footer className="signup__footer">
                             <span className="signup__caption">Got an Account? </span>
                             <a className="signup__link" href="/login">login!</a>

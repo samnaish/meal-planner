@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import Router from 'next/router'
+import Router from 'next/router';
+
+import ButtonComponent from '../ButtonComponent';
 
 const LoginComponent = () => {
     const [error, setError] = useState('');
@@ -35,12 +37,12 @@ const LoginComponent = () => {
     return (
         <div className="login-box">
             {
-                error ? <h1>SHITBALLS THERE WAS AN ERROR: {error}</h1> : ''
+                error ? <span className="login-box__error">{error}</span> : ''
             }
             <form className="login-box__form" onSubmit={submitForm}>
                 <input className="login-box__input" type="text" name="email" placeholder="email" required="required" />
                 <input className="login-box__input" type="password" name="password" placeholder="password" required="required" />
-                <button disabled={submitting} type="submit" className="login-box__login-button">login</button>
+                <ButtonComponent label="Login" val={submitting} type="submit"/>
                 <footer className="login-box__footer">
                     <span className="login-box__caption">Not registered? </span>
                     <a className="login-box__create-account" href="/signup">Create an account</a>
@@ -56,6 +58,13 @@ const LoginComponent = () => {
                 box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
                 border-radius: 10px;  
             }
+
+            .login-box__error [
+                display: block;
+                text-align: center;
+                margin: 10px auto;
+            }
+            ]
 
             .login-box__form {
                 display: flex;

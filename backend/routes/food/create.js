@@ -31,7 +31,6 @@ module.exports = async (req, res) => {
         const insertedRecipe = await recipeObject.save();
 
         return res.json({
-            success: true,
             recipe: insertedRecipe
         })
 

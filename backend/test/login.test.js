@@ -1,10 +1,11 @@
 const database = require('../services/database');
+const authentication = require('../services/authentication');
 const login = require('../routes/login');
 
 jest.mock('../services/database');
+jest.mock('../services/authentication');
 
-describe ("login Endpoint", () => {
-
+describe("login Endpoint", () => {
     const dummyConnection = "Hello";
     const notFoundEmail = "no email";
     const errorEmail = "error";
@@ -18,7 +19,7 @@ describe ("login Endpoint", () => {
 
     const dummyData = {
         email: "test@test.com",
-        first_name: "Robert"
+        password: "found"
     };
 
     const mockReq = {
@@ -37,6 +38,9 @@ describe ("login Endpoint", () => {
         process.env.JWT_SECRET = 'test';
         database.connect.mockImplementation(() => Promise.resolve(dummyConnection));
         database.loadModel.mockImplementation(() => dummyModel);
+        authentication.compareHash.mockImplementation((password) => {
+            return Promise.resolve(password === 'found');
+        });
     })
 
     afterEach(() => {
@@ -55,12 +59,10 @@ describe ("login Endpoint", () => {
             expect(mockRes.json.mock.calls.length).toEqual(1);
         });
 
-        test("responds with an object with a result property equal to 'Success'", async () => {
+        test("responds with an object with a token property", async () => {
             await login(mockReq, mockRes);
 
             const [responseObject] = mockRes.json.mock.calls[0];
-
-            expect(responseObject).toHaveProperty('result');
             expect(responseObject).toHaveProperty('token');
         })
 
@@ -72,7 +74,7 @@ describe ("login Endpoint", () => {
             mockReq.body = {
                 email: notFoundEmail
             };
-        })
+        });
 
         test("will set the statusCode to 400", async () => {
             await login(mockReq, mockRes);
@@ -87,11 +89,38 @@ describe ("login Endpoint", () => {
         test("responds with an object with a result property equal to 'Failure'", async () => {
             await login(mockReq, mockRes);
             expect(mockRes.json).toHaveBeenCalledWith({
-                result: "Failure"
-            })
+                error: "User not found."
+            });
         })
 
     });
+
+    describe("when the password doesn't match the found record", () => {
+
+        beforeAll(() => {
+            mockReq.body = {
+                password: 'not-found'
+            };
+        });
+
+        test("will set the statusCode to 400", async () => {
+            await login(mockReq, mockRes);
+            expect(mockRes.status).toHaveBeenCalledWith(400);
+        });
+
+        test("will respond with json", async () => {
+            await login(mockReq, mockRes);
+            expect(mockRes.json.mock.calls.length).toEqual(1);
+        });
+
+        test("responds with an object with a result property equal to 'Failure'", async () => {
+            await login(mockReq, mockRes);
+            expect(mockRes.json).toHaveBeenCalledWith({
+                error: "User not found."
+            })
+        })
+
+    })
 
     describe("when there's an error", () => {
 

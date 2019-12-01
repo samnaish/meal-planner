@@ -3,7 +3,7 @@ const search = require("../routes/search");
 
 jest.mock('../services/database');
 
-describe.only("Search Endpoint", () => {
+describe("Search Endpoint", () => {
 
     const dummyConnection = 'my-connection';
     const dummyModel = {

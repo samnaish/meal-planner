@@ -1,6 +1,7 @@
 import React,{ useState } from 'react';
 
-import IngredientInput from "../IngredientInput";
+import IngredientInput from '../IngredientInput';
+import ButtonComponent from '../ButtonComponent'
 
 export default () => {
     const [count, setCount] = useState(1);
@@ -63,7 +64,7 @@ export default () => {
                     }
                 </div>
                 <button type="button" className="form__button" onClick={() => setCount(count + 1)}>Add Ingredient</button>
-                <button disabled={submitting} type="submit" className="form__button">Submit!</button>
+-                <ButtonComponent val={submitting} type="submit" label="Submit!"/>
             </form>
             <style jsx>{`
         

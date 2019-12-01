@@ -38,7 +38,6 @@ module.exports = async (req, res) => {
         }, process.env.JWT_SECRET, { expiresIn: 30 * 60 });
         
         return res.json({
-            result: "Success",
             token
         });
 
