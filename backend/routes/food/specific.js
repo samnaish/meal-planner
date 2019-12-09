@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
                 error: "Dish not found."
             });
         }
-
+        
         return res.json({
             dish
         });
