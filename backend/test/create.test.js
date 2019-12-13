@@ -58,8 +58,8 @@ describe("Create API Endpoint", () => {
     beforeEach(() => {
         database.connect.mockImplementation(() => Promise.resolve(dummyConnection));
         database.loadModel.mockImplementation(() => DummyModel);
-        mockSaveFunction.mockReturnValue(Promise.resolve(dummyRecipeObject));
-        mockValidateFunction.mockReturnValue(Promise.resolve(true));
+        mockSaveFunction.mockResolvedValue(dummyRecipeObject);
+        mockValidateFunction.mockResolvedValue(true);
     });
 
     afterEach(() => {
@@ -84,7 +84,7 @@ describe("Create API Endpoint", () => {
         }
 
         beforeEach(() => {
-            mockValidateFunction.mockReturnValue(Promise.reject(dummyError));
+            mockValidateFunction.mockRejectedValue(dummyError);
         });
 
         test("responds with an 400 status code", async () => {
@@ -129,7 +129,7 @@ describe("Create API Endpoint", () => {
 
         beforeEach(() => {
             mockReq.body.name = 'anything-else';
-            mockSaveFunction.mockReturnValue(Promise.reject(true));
+            mockSaveFunction.mockRejectedValue(true);
         })
 
         test("responds with a 500 status code", async () => {

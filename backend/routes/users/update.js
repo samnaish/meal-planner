@@ -12,7 +12,7 @@ const userSchema = require('../../schemas/user');
 
 module.exports = async (req, res) => {
     try { 
-        const query = {_id: req.query.id};
+        const query = { _id: req.query.id };
         const connection = await database.connect();
         const User = database.loadModel(connection, 'users', userSchema);
         const foundUser = await User.findOne(query);
