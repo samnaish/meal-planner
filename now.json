@@ -44,7 +44,7 @@
             "dest": "backend/routes/users/create.js"
         },
         {
-            "src": "/api/users/(.*)",
+            "src": "/api/users/",
             "methods": ["GET"],
             "dest": "backend/routes/users/list.js"
         },

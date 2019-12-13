@@ -5,8 +5,7 @@ module.exports = async (req, res) => {
     try {
         const connection = await database.connect();
         const User = database.loadModel(connection, 'users', userSchema);
-        const filter = {};
-        const foundResults = await User.find(filter, { password: false });
+        const foundResults = await User.find({}, { password: false });
 
         return res.json({
             results: foundResults

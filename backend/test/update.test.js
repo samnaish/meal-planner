@@ -3,7 +3,7 @@ const update = require("../routes/food/update");
 
 jest.mock('../services/database');
 
-describe.only("Recipe Update Endpoint", () => {
+describe("Recipe Update Endpoint", () => {
 
     const dummyConnection = "Hello";
     const foundId = 'found';
@@ -57,8 +57,8 @@ describe.only("Recipe Update Endpoint", () => {
     beforeEach(() => {
         database.connect.mockImplementation(() => Promise.resolve(dummyConnection));
         database.loadModel.mockImplementation(() => DummyModel);
-        mockSaveFunction.mockReturnValue(Promise.resolve(dummyRecipeObject));
-        mockValidateFunction.mockReturnValue(Promise.resolve(true));
+        mockSaveFunction.mockResolvedValue(dummyRecipeObject);
+        mockValidateFunction.mockResolvedValue(true);
     });
 
     afterEach(() => {
@@ -93,7 +93,7 @@ describe.only("Recipe Update Endpoint", () => {
         }
         beforeEach(() => {
             mockReq.query.id = foundId;
-            mockValidateFunction.mockReturnValue(Promise.reject(dummyError));
+            mockValidateFunction.mockRejectedValue(dummyError);
         });
 
         test("responds with an 400 status code", async () => {
@@ -123,7 +123,7 @@ describe.only("Recipe Update Endpoint", () => {
 
         beforeEach(() => {
             mockReq.body._id = 'anything-else';
-            mockSaveFunction.mockReturnValue(Promise.reject(true));
+            mockSaveFunction.mockRejectedValue(true);
         })
 
         test("responds with a 500 status code", async () => {

@@ -49,8 +49,8 @@ describe('User Create Endpoint', () => {
     beforeEach(() => {
         database.connect.mockImplementation(() => Promise.resolve(dummyConnection));
         database.loadModel.mockImplementation(() => DummyData);
-        mockSave.mockReturnValue(Promise.resolve(dummyUser));
-        mockValidate.mockReturnValue(Promise.resolve(true));
+        mockSave.mockResolvedValue(dummyUser);
+        mockValidate.mockResolvedValue(true);
     });
 
     afterEach(() => {
@@ -72,7 +72,7 @@ describe('User Create Endpoint', () => {
         }
 
         beforeEach(() => {
-            mockValidate.mockReturnValue(Promise.reject(dummyError));
+            mockValidate.mockRejectedValue(dummyError);
         });
         
         test('it should respond with a 400', async () => {
@@ -96,7 +96,7 @@ describe('User Create Endpoint', () => {
 
         beforeEach(() => {
             mockReq.body.email = 'something-else';
-            mockSave.mockReturnValue(Promise.reject(true));
+            mockSave.mockRejectedValue(true);
 
         });
         
