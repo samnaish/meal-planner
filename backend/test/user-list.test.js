@@ -3,7 +3,7 @@ const list = require('../routes/users/list');
 
 jest.mock('../services/database');
 
-describe.only('List User Endpoint', () => {
+describe('List User Endpoint', () => {
 
     const dummyConnection = 'hello';
     const dummyResults = [1,2,3,4,5,6];
