@@ -3,7 +3,7 @@ const update = require("../routes/food/update");
 
 jest.mock('../services/database');
 
-describe.only("Recipe Update Endpoint", () => {
+describe("Recipe Update Endpoint", () => {
 
     const dummyConnection = "Hello";
     const foundId = 'found';
