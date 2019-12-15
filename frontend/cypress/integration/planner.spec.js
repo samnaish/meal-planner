@@ -15,4 +15,8 @@ describe('Meal Planner Integration', () => {
         cy.get('.recipe__title').contains('Spaghetti Bolognese');
     })
 
+    it('users link through fine', () => {
+        
+    })
+
 });

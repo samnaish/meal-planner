@@ -3,11 +3,11 @@ import fetch from 'isomorphic-unfetch';
 import Link from 'next/link';
 import jwt from 'jsonwebtoken';
 
-import Layout from "../components/Layout";
 import Heading from '../components/Heading';
 import Reason from "../components/Reason";
 import How from "../components/How";
 import DishList from "../components/Dishlist";
+import Layout from "../components/Layout";
 
 const HomePage = ({ foodData }) => {
     return (
