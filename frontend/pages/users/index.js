@@ -10,19 +10,19 @@ const UsersPage = ({ results = [] }) => {
     return (
         <Layout>
             <Heading title="User List" />
-            <ul className="user__list-container">
+            <div className="user__list-container">
                 {
                     results.map(user => {
                         return (
                             <div className="user__items" key={user._id}>
                                 <Link as={`users/${user._id}`} href="users/[id]">
-                                    <li className="user__list-people">{user.first_name} {user.last_name}</li> 
+                                    <a className="user__list-people">{user.first_name} {user.last_name}</a> 
                                 </Link>
                             </div>
                         )
                     })
                 }
-            </ul>
+            </div>
         <style>{`
 
                 .user__list-container {
@@ -44,6 +44,7 @@ const UsersPage = ({ results = [] }) => {
                 }
 
                 .user__list-people {
+                    display: block;
                     text-align: center;
                     list-style: none;
                     width: 150px;
@@ -51,6 +52,8 @@ const UsersPage = ({ results = [] }) => {
                     height: 50px;
                     padding: 12px 10px;
                     transition: 0.3s background-color ease;
+                    text-decoration: none;
+                    color: black;
                 }
 
                 .user__list-people:hover {
