@@ -1,49 +1,40 @@
 import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import Link from 'next/link';
 
 import ButtonComponent from '../ButtonComponent';
+import ErrorComponent from '../ErrorComponent';
 
 export default () => {
 
-    const [ error, setError ] = useState('');
-    const [ failures, setFailures ] = useState({});
-    const [ submitting ,setSubmitting] = useState(false);
+    const { register, handleSubmit, errors } = useForm();
+    const [ submitting, setSubmitting] = useState(false);
+    const [ failure, setFailure ] = useState(null);
     const [ success, setSuccess] = useState(false);
 
-    const createAccount = async (ev) => {
-        ev.preventDefault();
-        const data = new FormData(ev.target);
-        const registerPayload = Object.fromEntries(data);
-        setError('');
-        setFailures({});
-        
-        if(registerPayload.password !== registerPayload.confirm_password) {
-            setFailures({
-                confirm_password: 'Please ensure your password matches.'
-            });
-            return;
-        }
-
+    const onAccountSubmit = async (data) => {
         setSubmitting(true);
         const createResponse = await fetch('/api/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(registerPayload)
+            body: JSON.stringify(data)
         })
         const accountData = await createResponse.json();
         setSubmitting(false);
+        console.log(accountData);
 
         if(accountData.error) {
-            setError(accountData.error);
-            accountData.failures && setFailures(accountData.failures);
+            setFailure(accountData.error);
+            // setError(accountData.error);
+            // accountData.failures && setFailures(accountData.failures);
         } else {
             setSuccess(true);
         }
-        
-    };
 
+    }
+    
     return(
         <div className="signup">
             {
@@ -56,21 +47,19 @@ export default () => {
                     </div>
                 )
                 : (
-                    <form className="signup__form" onSubmit={createAccount}>
-                        {
-                            error ? <span className="signup__error">{error}</span> : ''
-                        }
-                        <input className="signup__input" name="first_name" type="text" placeholder="First Name" required="required" />
-                        { failures.first_name ? <span className="signup__error">{failures.first_name}</span> : ''  }
-                        <input className="signup__input" name="last_name" type="text" placeholder="Last Name" required="required" />
-                        { failures.last_name ? <span className="signup__error">{failures.last_name}</span> : ''  }
-                        <input className="signup__input" name="email" type="email" placeholder="Email Address" required="required" />
-                        { failures.email ? <span className="signup__error">{failures.email}</span> : '' }
-                        <input className="signup__input" name="password" type="password" placeholder="Password" required="required" />
-                        { failures.password ? <span className="signup__error">{failures.password}</span> : '' }
-                        <input className="signup__input" name="confirm_password" type="password" placeholder="Confirm Password" required="required" />
-                        { failures.confirm_password ? <span className="signup__error">{failures.confirm_password}</span> : '' }
-                        <ButtonComponent val={submitting} label="Join" type="submit"/>
+                    <form className="signup__form" onSubmit={handleSubmit(onAccountSubmit)}>
+                        { failure && <ErrorComponent message={failure} />}
+                        <input className="signup__input" name="first_name" type="text" placeholder="First Name" ref={register({ required: true, minLength: 2})} />
+                        { errors.first_name && <span className="signup__error">Please enter a valid first name</span> }
+                        <input className="signup__input" name="last_name" type="text" placeholder="Last Name" ref={register({ required: true, minLength: 2})} />
+                        { errors.last_name && <span className="signup__error">Please enter a valid last name</span>  }
+                        <input className="signup__input" name="email" type="email" placeholder="Email Address" ref={register({ required: true})} />
+                        { errors.email && <span className="signup__error">Please enter a valid email</span> }
+                        <input className="signup__input" name="password" type="password" placeholder="Password" ref={register({ required: true, minLength: 8})} />
+                        { errors.password && <span className="signup__error">Please enter a valid password</span> }
+                        <input className="signup__input" name="confirm_password" type="password" placeholder="Confirm Password" ref={register({ required: true, minLength: 8})} />
+                        { errors.confirm_password && <span className="signup__error">Please ensure password matches</span> }
+                        <ButtonComponent disabled={submitting} label="Join" type="submit"/>
                         <footer className="signup__footer">
                             <span className="signup__caption">Got an Account? </span>
                             <a className="signup__link" href="/login">login!</a>

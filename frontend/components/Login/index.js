@@ -1,48 +1,71 @@
 import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import Router from 'next/router';
 
 import ButtonComponent from '../ButtonComponent';
+import ErrorComponent from '../ErrorComponent';
 
 const LoginComponent = () => {
-    const [error, setError] = useState('');
-    const [submitting, setSubmitting] = useState(false);
-    const submitForm = async (ev) => {
-        ev.preventDefault();
-        const data = new FormData(ev.target);
+    const { register, handleSubmit, errors } = useForm();
+    const [ failure, setFailure ] = useState(null);
+    const [ submitting, setSubmitting ] = useState(false);
+
+    const onAccountLogin = async (data) => {
         setSubmitting(true);
-        setError('');
         const loginResponse = await fetch('/api/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(Object.fromEntries(data))
+            body: JSON.stringify(data)
         });
         const loginData = await loginResponse.json();
         setSubmitting(false);
-
         if(loginData.error) {
-            setError(loginData.error);
+            setFailure(loginData.error);
             return;
         }
+        const { token } = loginData;
+        localStorage.setItem('token', token);
+        Router.push('/recipes');
+    }
 
-        // get token from loginData
-        // save token somewhere
-        // redirect to recipes page
+    // const submitForm = async (ev) => {
+    //     ev.preventDefault();
+    //     const data = new FormData(ev.targrequired: trueet);
+    //     setSubmitting(true);
+    //     setError('');
+    //     const loginResponse = await fetch('/api/login', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify(Object.fromEntries(data))
+    //     });
+    //     const loginData = await loginResponse.json();
+    //     setSubmitting(false);
 
-        Router.push("/recipes");
+    //     if(loginData.error) {
+    //         setError(loginData.error);
+    //         return;
+    //     }
 
-    };
+    //     const { token } = loginData;
+    //     localStorage.setItem('token', token);
+    //     Router.push('/recipes');
+    // };
 
     return (
         <div className="login-box">
             {
-                error ? <span className="login-box__error">{error}</span> : ''
+                failure && <ErrorComponent massage={failure} />
             }
-            <form className="login-box__form" onSubmit={submitForm}>
-                <input className="login-box__input" type="text" name="email" placeholder="email" required="required" />
-                <input className="login-box__input" type="password" name="password" placeholder="password" required="required" />
-                <ButtonComponent label="Login" val={submitting} type="submit"/>
+            <form className="login-box__form" onSubmit={handleSubmit(onAccountLogin)}>
+                <input className="login-box__input" type="text" name="email" placeholder="email" ref={register({ required: true })} />
+                { errors.email && <span className="login-box__error">Please enter email</span> }
+                <input className="login-box__input" type="password" name="password" placeholder="password" ref={register({ required: true })} />
+                { errors.password && <span className="login-box__error">PLease enter password</span> }
+                <ButtonComponent label="Login" disabled={submitting} type="submit"/>
                 <footer className="login-box__footer">
                     <span className="login-box__caption">Not registered? </span>
                     <a className="login-box__create-account" href="/signup">Create an account</a>
@@ -129,6 +152,16 @@ const LoginComponent = () => {
 
             .login-box__caption {
                 color: white;
+            }
+
+            login-box__error {
+                width: 100%;
+                padding: 5px;
+                border-radius: 5px;
+                margin-bottom: 10px;
+                color: #9e0000;
+                background-color: #f5c6cb;
+                font-size: 14px;
             }
 
             @media screen and (max-width: 440px) {
