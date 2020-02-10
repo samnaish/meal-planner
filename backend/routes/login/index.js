@@ -8,7 +8,7 @@ const UserSchema = require('../../schemas/user');
 const signToken = promisify(jwt.sign);
 
 module.exports = async (req, res) => {
-    const { email, password } = req.body;
+    const { email, password, rememberMe } = req.body;
 
     try {
         const connection = await database.connect();
@@ -32,10 +32,11 @@ module.exports = async (req, res) => {
 
         const token = await signToken({
             user: {
+                _id: foundUser._id,
                 email: foundUser.email,
                 first_name: foundUser.first_name
             }
-        }, process.env.JWT_SECRET, { expiresIn: 30 * 60 });
+        }, process.env.JWT_SECRET, { expiresIn: rememberMe ? 60 * 60 * 24 * 30 : 30 * 60 });
         
         return res.json({
             token

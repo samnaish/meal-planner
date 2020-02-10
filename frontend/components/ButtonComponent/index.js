@@ -1,10 +1,10 @@
 import React from 'react';
 
-const ButtonComponent = ({ val, label }) => {
+const ButtonComponent = ({ disabled, label }) => {
 
     return (
         <div className="button__container">
-            <button className="button__button" disabled={val} type="submit">{label}</button>
+            <button className="button__button" disabled={disabled} type="submit">{label}</button>
         <style jsx>{`
 
             .button__container {

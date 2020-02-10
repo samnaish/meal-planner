@@ -1,22 +1,18 @@
 import React,{ useState } from 'react';
+import { useForm } from 'react-hook-form';
 
 import IngredientInput from '../IngredientInput';
 import ButtonComponent from '../ButtonComponent'
+import ErrorComponent from '../ErrorComponent';
 
 export default () => {
+    const { register, handleSubmit, errors } = useForm();
     const [count, setCount] = useState(1);
-    const [ error, setError ] = useState('');
     const [ submitting, setSubmitting ] = useState(false);
-    const [ failures, setFailures ] = useState({});
+    const [ failure, setFailure ] = useState(null);
     const [ success, setSuccess ] = useState(false);
 
-    const createRecipe = async (ev) => {
-        ev.preventDefault();
-        const data = new FormData(ev.target);
-        const registerPayload = Object.fromEntries(data);
-        setError('');
-        setFailures({});
-
+    const onRecipeSubmit = async (data) => {
         try {
             setSubmitting(true);
             const createResponse = await fetch('/api/food/', {
@@ -24,38 +20,37 @@ export default () => {
                 headers: {
                     'content-type': 'application/json'
                 },
-                body: JSON.stringify(registerPayload)
+                body: JSON.stringify(data)
             });
             const recipeData = await createResponse.json();
             setSubmitting(false);
 
             if(recipeData.error) {
-                setError(recipeData.error);
-                recipeData.failures && setFailures(recipeData.failures);
+                setFailure(recipeData.error);
             } else {
                 setSuccess(true);
             }
         } catch (error) {
             setSubmitting(false);
-            setError("Unknown error, please try again.");
+            setfailure("Unknown error, please try again.");
         }
 
-    };
+    }
 
     return (
         <div className="form">
-            <form className="form__form" onSubmit={createRecipe}>
+            <form className="form__form" onSubmit={handleSubmit(onRecipeSubmit)}>
                 {
-                    error ? <span className="form__error">{error}</span> : ''
+                    failure && <ErrorComponent message={failure}/>
                 }
                 <div className="form__header">
                     <h4 className="form__title">Dish name</h4>
-                    <input placeholder="name" name="name" className="form__name-input" type="text" />
-                    { failures.name ? <span className="form_error">{failures.name}</span> : '' }
-                    <input placeholder="image URL" name="image" className="form__name-input" type="text" />
-                    { failures.image ? <span className="form_error">{failures.image}</span> : '' }
-                    <input placeholder="servings" name="servings" className="form__name-input" type="number" min="1" />
-                    { failures.servings ? <span className="form_error">{failures.servings}</span> : '' }
+                    <input placeholder="name" name="name" className="form__name-input" type="text" ref={register({ required: true, minLength: 2 })} />
+                    { errors.name && <span className="form_error">Please enter the name</span> }
+                    <input placeholder="image URL" name="image" className="form__name-input" type="text" ref={register({required: true})} />
+                    { errors.image && <span className="form_error">Please enter image URL</span> }
+                    <input placeholder="servings" name="servings" className="form__name-input" type="number" ref={register({required: true, minLength: 1})} />
+                    { errors.servings && <span className="form_error">Please enter servings amount</span> }
                 </div>
                 <div className="form__sub-header" >How many Ingredients? {count}</div>
                 <div className="form__inputs">
@@ -64,7 +59,7 @@ export default () => {
                     }
                 </div>
                 <button type="button" className="form__button" onClick={() => setCount(count + 1)}>Add Ingredient</button>
--                <ButtonComponent val={submitting} type="submit" label="Submit!"/>
+-                <ButtonComponent disabled={submitting} type="submit" label="Submit!"/>
             </form>
             <style jsx>{`
         

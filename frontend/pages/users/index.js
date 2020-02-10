@@ -4,7 +4,6 @@ import link from "next/link";
 
 import Layout from "../../components/Layout";
 import Heading from "../../components/Heading";
-import Link from 'next/link';
 
 const UsersPage = ({ results = [] }) => {
     return (
