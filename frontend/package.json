@@ -26,6 +26,7 @@
   "author": "Sam Naish",
   "license": "ISC",
   "dependencies": {
+    "classnames": "^2.2.6",
     "isomorphic-unfetch": "^3.0.0",
     "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^2.2.0",
