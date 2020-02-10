@@ -7,7 +7,7 @@ import ErrorComponent from '../ErrorComponent';
 
 export default () => {
 
-    const { register, handleSubmit, errors } = useForm();
+    const { register, handleSubmit, errors, getValues } = useForm();
     const [ submitting, setSubmitting] = useState(false);
     const [ failure, setFailure ] = useState(null);
     const [ success, setSuccess] = useState(false);
@@ -55,9 +55,18 @@ export default () => {
                         { errors.last_name && <span className="signup__error">Please enter a valid last name</span>  }
                         <input className="signup__input" name="email" type="email" placeholder="Email Address" ref={register({ required: true})} />
                         { errors.email && <span className="signup__error">Please enter a valid email</span> }
-                        <input className="signup__input" name="password" type="password" placeholder="Password" ref={register({ required: true, minLength: 8})} />
+                        <input className="signup__input" name="password" type="password" placeholder="Password" ref={register({ required: true, minLength: 8 })} />
                         { errors.password && <span className="signup__error">Please enter a valid password</span> }
-                        <input className="signup__input" name="confirm_password" type="password" placeholder="Confirm Password" ref={register({ required: true, minLength: 8})} />
+                        <input 
+                            className="signup__input" 
+                            name="confirm_password" 
+                            type="password" 
+                            placeholder="Confirm Password" 
+                            ref={register({ 
+                                required: true, 
+                                minLength: 8,
+                                validate: (value) => value === getValues().password
+                            })} />
                         { errors.confirm_password && <span className="signup__error">Please ensure password matches</span> }
                         <ButtonComponent disabled={submitting} label="Join" type="submit"/>
                         <footer className="signup__footer">

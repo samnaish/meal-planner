@@ -28,8 +28,6 @@ export default ({ children }) => {
             localStorage.removeItem('token');
         }
 
-        
-
     }, []);
 
     return (

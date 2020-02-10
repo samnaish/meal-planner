@@ -37,38 +37,6 @@ export default () => {
 
     }
 
-    // const createRecipe = async (ev) => {
-    //     ev.preventDefault();
-    //     const data = new FormData(ev.target);
-    //     const registerPayload = Object.fromEntries(data);
-    //     setError('');
-    //     setFailures({});
-
-        // try {
-        //     setSubmitting(true);
-        //     const createResponse = await fetch('/api/food/', {
-        //         method: 'POST',
-        //         headers: {
-        //             'content-type': 'application/json'
-        //         },
-        //         body: JSON.stringify(registerPayload)
-        //     });
-        //     const recipeData = await createResponse.json();
-        //     setSubmitting(false);
-
-        //     if(recipeData.error) {
-        //         setError(recipeData.error);
-        //         recipeData.failures && setFailures(recipeData.failures);
-        //     } else {
-        //         setSuccess(true);
-        //     }
-        // } catch (error) {
-        //     setSubmitting(false);
-        //     setError("Unknown error, please try again.");
-        // }
-
-    // };
-
     return (
         <div className="form">
             <form className="form__form" onSubmit={handleSubmit(onRecipeSubmit)}>
@@ -79,9 +47,9 @@ export default () => {
                     <h4 className="form__title">Dish name</h4>
                     <input placeholder="name" name="name" className="form__name-input" type="text" ref={register({ required: true, minLength: 2 })} />
                     { errors.name && <span className="form_error">Please enter the name</span> }
-                    <input placeholder="image URL" name="image" className="form__name-input" type="text" ref={egister({required: true})} />
+                    <input placeholder="image URL" name="image" className="form__name-input" type="text" ref={register({required: true})} />
                     { errors.image && <span className="form_error">Please enter image URL</span> }
-                    <input placeholder="servings" name="servings" className="form__name-input" type="number" ref={egister({required: true, minLength: 1})} />
+                    <input placeholder="servings" name="servings" className="form__name-input" type="number" ref={register({required: true, minLength: 1})} />
                     { errors.servings && <span className="form_error">Please enter servings amount</span> }
                 </div>
                 <div className="form__sub-header" >How many Ingredients? {count}</div>

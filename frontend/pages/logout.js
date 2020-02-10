@@ -9,7 +9,7 @@ export default () => {
         localStorage.removeItem('token');
         setTimeout(() => {
             Router.push('/');
-        }, 2500)
+        }, 2000)
     }, []);
 
     return (

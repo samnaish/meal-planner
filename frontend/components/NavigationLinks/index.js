@@ -17,7 +17,7 @@ export default () => {
             </Fragment>
           : (
             <Fragment>
-              <li className="nav__link"><a className="nav__anchor">Hello {user.first_name}</a></li>
+              <li className="nav__link"><a className="nav__anchor" href="/profile">Hello {user.first_name}</a></li>
               <li className="nav__link"><a className="nav__anchor" href="/logout">Logout</a></li>
             </Fragment>
           )

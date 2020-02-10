@@ -4,6 +4,7 @@ import Router from 'next/router';
 
 import ButtonComponent from '../ButtonComponent';
 import ErrorComponent from '../ErrorComponent';
+import ForgotPassword from '../ForgotPassword';
 
 const LoginComponent = () => {
     const { register, handleSubmit, errors } = useForm();
@@ -30,31 +31,6 @@ const LoginComponent = () => {
         Router.push('/recipes');
     }
 
-    // const submitForm = async (ev) => {
-    //     ev.preventDefault();
-    //     const data = new FormData(ev.targrequired: trueet);
-    //     setSubmitting(true);
-    //     setError('');
-    //     const loginResponse = await fetch('/api/login', {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify(Object.fromEntries(data))
-    //     });
-    //     const loginData = await loginResponse.json();
-    //     setSubmitting(false);
-
-    //     if(loginData.error) {
-    //         setError(loginData.error);
-    //         return;
-    //     }
-
-    //     const { token } = loginData;
-    //     localStorage.setItem('token', token);
-    //     Router.push('/recipes');
-    // };
-
     return (
         <div className="login-box">
             {
@@ -64,11 +40,17 @@ const LoginComponent = () => {
                 <input className="login-box__input" type="text" name="email" placeholder="email" ref={register({ required: true })} />
                 { errors.email && <span className="login-box__error">Please enter email</span> }
                 <input className="login-box__input" type="password" name="password" placeholder="password" ref={register({ required: true })} />
-                { errors.password && <span className="login-box__error">PLease enter password</span> }
+                { errors.password && <span className="login-box__error">Please enter password</span> }
+                <div className="login-box__form-row">
+                    <label htmlFor="rememberMe" className="login-box__label">Remember Me</label>
+                    <input className="login-box__checkbox" id="rememberMe" type="checkbox" name="rememberMe" ref={register}/>
+                </div>
                 <ButtonComponent label="Login" disabled={submitting} type="submit"/>
                 <footer className="login-box__footer">
                     <span className="login-box__caption">Not registered? </span>
                     <a className="login-box__create-account" href="/signup">Create an account</a>
+                    <br/>
+                    <ForgotPassword />
                 </footer>
             </form>
             <style jsx>{`

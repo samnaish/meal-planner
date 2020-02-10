@@ -14,7 +14,7 @@ const ErrorComponent = ({ message, items = [] }) => {
 
             .error {
                 background-color: #FFBABA;
-                color: #fff;
+                color: #402d2d;
                 width: 100%;
                 border: 1px solid red;
                 border-radius: 5px;
