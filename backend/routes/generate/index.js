@@ -5,18 +5,19 @@ const DEFAULT_DAYS = 4;
 
 module.exports = async (req, res) => {
 
-    // Three cases
-        // User doesnt specify a value
-        // User does but as its a query param its a string - sample needs an integer
-        // User does provide a value, but its invalid - ie not a number
-
-    const { days } = req.query;
+    const { days, ignore = '' } = req.query;
     const numDays = parseInt(days, 10);
 
+    const ignoreArray = ignore
+        .split(',')
+        .filter(id => id.length > 0)
+        .map(id => database.toObjectId(id));
+    
     try {
         const connection  = await database.connect();
         const Recipe = database.loadModel(connection, 'recipe', RecipeSchema);
         const results = await Recipe.aggregate([
+            { $match: { _id: { $nin: ignoreArray } } },
             { $sample: { size: isNaN(numDays) ? DEFAULT_DAYS : numDays } },
             { $project: { name: 1, image: 1 } }
         ]);
