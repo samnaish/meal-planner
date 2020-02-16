@@ -8,6 +8,7 @@ import Layout from '../components/Layout';
 import Loader from '../components/Loader';
 import Range from '../components/Range';
 import ResultItem from '../components/ResultItem';
+import Checkbox from '../components/Checkbox';
 
 
 const PlanPage = () => {
@@ -35,10 +36,9 @@ const PlanPage = () => {
 
     const generateMealPlan = async (data) => {
         setIsLoading(true);
-
         const daysRequired = data.days - Object.keys(liked).length;
         const ignoreLiked = Object.keys(liked).join(',');
-        const response = await fetch(`/api/generate?days=${daysRequired}&ignore=${ignoreLiked}`);
+        const response = await fetch(`/api/generate?days=${daysRequired}&ignore=${ignoreLiked}&vegetarian=${data.vegetarian}`);
         const { results } = await response.json();
 
         const newResults = [...results, ...Object.values(liked)];
@@ -54,6 +54,7 @@ const PlanPage = () => {
                 <span>Use our easy generator to plan your week!</span>
                 <form className="generate__form" onSubmit={handleSubmit(generateMealPlan)}>
                     <Range name="days" min="1" max="7" step="1" ref={register}/>
+                    <Checkbox name="vegetarian" label="Vegetarian dishes" ref={register}/>
                     <button className="generate__cta" type="submit">Generate!</button>
                 </form>
                 <div className="generate__results">
