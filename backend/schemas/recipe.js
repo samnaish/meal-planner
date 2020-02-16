@@ -39,6 +39,9 @@ const recipe = new Schema({
             type: Number
         }
     },
+    vegetarian: {
+        type: Boolean
+    },
     ingredients: {
         type: [IngredientSchema],
         default: []

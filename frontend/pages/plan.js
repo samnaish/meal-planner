@@ -8,6 +8,7 @@ import Layout from '../components/Layout';
 import Loader from '../components/Loader';
 import Range from '../components/Range';
 import ResultItem from '../components/ResultItem';
+import Checkbox from '../components/Checkbox';
 
 
 const PlanPage = () => {
@@ -25,11 +26,24 @@ const PlanPage = () => {
         }
     }
 
+    const removeLike = (recipe) => {
+        if (liked[recipe._id]) {
+            const newLiked = {...liked};
+            delete newLiked[recipe._id];
+            setLiked(newLiked);
+        }
+    }
+
     const generateMealPlan = async (data) => {
         setIsLoading(true);
-        const response = await fetch(`/api/generate?days=${data.days}`);
+        const daysRequired = data.days - Object.keys(liked).length;
+        const ignoreLiked = Object.keys(liked).join(',');
+        const response = await fetch(`/api/generate?days=${daysRequired}&ignore=${ignoreLiked}&vegetarian=${data.vegetarian}`);
         const { results } = await response.json();
-        setResults(results);
+
+        const newResults = [...results, ...Object.values(liked)];
+
+        setResults(newResults);
         setIsLoading(false);        
     }
     
@@ -40,6 +54,7 @@ const PlanPage = () => {
                 <span>Use our easy generator to plan your week!</span>
                 <form className="generate__form" onSubmit={handleSubmit(generateMealPlan)}>
                     <Range name="days" min="1" max="7" step="1" ref={register}/>
+                    <Checkbox name="vegetarian" label="Vegetarian dishes" ref={register}/>
                     <button className="generate__cta" type="submit">Generate!</button>
                 </form>
                 <div className="generate__results">
@@ -60,8 +75,10 @@ const PlanPage = () => {
                                         </a>
                                     </Link>
                                     <div className="generate__button-container">
-                                        <button className="generate__button" type="button">Remove</button>
-                                        <button className="generate__button" onClick={() => likeItem(result)} type="button">Keep</button>
+                                        {
+                                            isLiked ? <button className="generate__button" onClick={() => removeLike(result)} type="button">Remove</button> : 
+                                            <button className="generate__button" onClick={() => likeItem(result)} type="button">Keep</button>
+                                        }
                                     </div>
                                 </div>
                             )
