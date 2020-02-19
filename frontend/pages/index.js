@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import fetch from 'isomorphic-unfetch';
 import Link from 'next/link';
-import jwt from 'jsonwebtoken';
 
 import Heading from '../components/Heading';
 import Reason from "../components/Reason";

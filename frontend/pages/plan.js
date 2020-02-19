@@ -9,6 +9,7 @@ import Loader from '../components/Loader';
 import Range from '../components/Range';
 import ResultItem from '../components/ResultItem';
 import Checkbox from '../components/Checkbox';
+import IngredientList from '../components/IngredientList';
 
 
 const PlanPage = () => {
@@ -16,6 +17,7 @@ const PlanPage = () => {
     const [results, setResults] = useState([]);
     const [liked, setLiked] = useState({});
     const { register, handleSubmit } = useForm();
+    const [ingredients, setIngredients] = useState(null);
 
     const likeItem = (recipe) => {
         if (!liked[recipe._id]) {
@@ -40,11 +42,20 @@ const PlanPage = () => {
         const ignoreLiked = Object.keys(liked).join(',');
         const response = await fetch(`/api/generate?days=${daysRequired}&ignore=${ignoreLiked}&vegetarian=${data.vegetarian}`);
         const { results } = await response.json();
-
         const newResults = [...results, ...Object.values(liked)];
-
         setResults(newResults);
         setIsLoading(false);        
+    }
+
+    const generateIngredients = async () => {
+        const allIds = Object.keys(liked).join(',');
+        const response = await fetch(`/api/generate/ingredients/?ids=${allIds}`);
+        const { ingredients } = await response.json();
+        setIngredients(ingredients);
+        console.log('============');
+        console.log('ingredients', ingredients);
+        console.log('============');
+        
     }
     
     return (
@@ -85,6 +96,16 @@ const PlanPage = () => {
                         })
                     }
                 </div>
+                <div>
+                    {
+                        Object.keys(liked).length > 0 && <button type="submit" onClick={generateIngredients}>Get ingredients</button>
+                    }
+                    {
+                        ingredients && <IngredientList ingredients={ingredients}/>
+                    }
+                        
+                </div>
+
             </div>
             <style jsx>
                 {
