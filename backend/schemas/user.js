@@ -28,6 +28,12 @@ const userSchema = new Schema ({
     },
     dob: {
         type: String
+    },
+    posts: {
+        ninlength: [8, 'Please ensure your post is at least 8 characters long'],
+        type: [{
+            type: String
+        }]
     }
 });
 
