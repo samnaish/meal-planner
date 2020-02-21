@@ -9,6 +9,7 @@ import Loader from '../components/Loader';
 import Range from '../components/Range';
 import ResultItem from '../components/ResultItem';
 import Checkbox from '../components/Checkbox';
+import IngredientList from '../components/IngredientList';
 
 
 const PlanPage = () => {
@@ -16,6 +17,7 @@ const PlanPage = () => {
     const [results, setResults] = useState([]);
     const [liked, setLiked] = useState({});
     const { register, handleSubmit } = useForm();
+    const [ingredients, setIngredients] = useState(null);
 
     const likeItem = (recipe) => {
         if (!liked[recipe._id]) {
@@ -40,11 +42,16 @@ const PlanPage = () => {
         const ignoreLiked = Object.keys(liked).join(',');
         const response = await fetch(`/api/generate?days=${daysRequired}&ignore=${ignoreLiked}&vegetarian=${data.vegetarian}`);
         const { results } = await response.json();
-
         const newResults = [...results, ...Object.values(liked)];
-
         setResults(newResults);
         setIsLoading(false);        
+    }
+
+    const generateIngredients = async () => {
+        const allIds = Object.keys(liked).join(',');
+        const response = await fetch(`/api/generate/ingredients/?ids=${allIds}`);
+        const { ingredients } = await response.json();
+        setIngredients(ingredients);
     }
     
     return (
@@ -85,6 +92,18 @@ const PlanPage = () => {
                         })
                     }
                 </div>
+                <div className="generate__ingredients">
+                    <div className="generate__ingredients-list">
+                        {
+                            Object.keys(liked).length > 0 && <button className="generate__ingredient-button" type="submit" onClick={generateIngredients}>Get ingredients</button>
+                        }
+                    </div>
+                    {
+                        ingredients && <IngredientList ingredients={ingredients}/>
+                    }
+                        
+                </div>
+
             </div>
             <style jsx>
                 {
@@ -102,6 +121,12 @@ const PlanPage = () => {
                         border: none;
                         border-radius: 5px;
                         cursor: pointer;
+                        transition: all 0.3s ease;
+                    }
+
+                    .generate__cta:hover {
+                        background-color: #4A5899;
+                        color: #fff;
                     }
 
                     .generate__input {
@@ -135,6 +160,7 @@ const PlanPage = () => {
                     .generate__item--liked {
                         background-color: green;
                         border-radius: 5px;
+                        margin: 2px;
                     }
 
                     .generate__anchor {
@@ -176,6 +202,22 @@ const PlanPage = () => {
                     .generate__liked {
                         display: block;
                         width: 100%;
+                    }
+
+                    .generate__ingredient-button {
+                        background-color: #ACEDFF;
+                        border: none;
+                        border-radius: 5px;
+                        width: 200px;
+                        height: 50px;
+                        margin: 10px auto;
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                    }
+
+                    .generate__ingredient-button:hover {
+                        background-color: #4A5899;
+                        color: #fff;
                     }
 
                     `
