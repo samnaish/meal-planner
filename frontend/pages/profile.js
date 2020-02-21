@@ -1,14 +1,15 @@
 import React, { useEffect, useState, Fragment } from 'react';
+import { useForm } from 'react-hook-form';
 import fetch from 'isomorphic-unfetch';
 import Router from 'next/router';
 
 import Layout from '../components/Layout';
 import Loader from '../components/Loader';
-import ButtonComponent from '../components/ButtonComponent';
 
 const ProfilePage = ({}) => {
     const [profile, setProfile] = useState(null);
-    //const [post, setpost] = useState([]);
+    const { register, handleSubmit, errors } = useForm();
+    const [posts, setPosts] = useState([]);
 
     useEffect(() => {
         async function fetchProfile () {
@@ -25,6 +26,22 @@ const ProfilePage = ({}) => {
         }
         fetchProfile();
     }, []);
+
+    const onPostSubmit = async (data) => {
+        const postResponse = await fetch('/api/users/posts', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-SessionToken': localStorage.getItem('token')
+            },
+            body: JSON.stringify(data)
+        });
+
+        const {posts} = await postResponse.json();
+
+        setPosts(posts);
+
+    }
 
     return (
         <Layout>
@@ -43,12 +60,23 @@ const ProfilePage = ({}) => {
                                     <a className="profile__link" href="/plan">Plan your meals</a>
                                 </div>
                             </div>
-                            <div className="profile__posts">
-                                <input className="profile__post-input" placeholder="whats on your mind?" type="text"/>
-                                <button className="profile__post-button" type="button">Post</button>
-                            </div>
+                            <form onSubmit={handleSubmit(onPostSubmit)} className="profile__posts-container">
+                                <input name="post" className="profile__post-input" placeholder="whats on your mind?" type="text" ref={register({ required: true, min: 5 })}/>
+                                {errors.post && <span className="profile__post-error">Post must have content</span>}
+                                <button className="" type="submit">Post</button>
+                            </form>
                             <div className="profile__board-container">
-                                <div className="profile__post-board">this is a post board</div>
+                                <div className="profile__post-board">
+                                    {
+                                        posts.map((item, index) => {
+                                            return (
+                                                <div className="profile__post" key={index}>
+                                                    <span className="">{item}</span>
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                </div>
                             </div>
                         </Fragment>
                     ) 
@@ -61,12 +89,40 @@ const ProfilePage = ({}) => {
                     display: flex;
                     flex-direction: column;
                     border: 1px solid pink;
+                    height: 100vh;
                 }
 
                 .profile__header {
                     display: flex;
                     flex-direction: row;
                     border: 1px solid red;
+                }
+
+                .profile__content {
+                    background-color: #fff;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    border: 1px solid green;
+                    margin: 20px auto;
+                    padding: 10px;
+                    max-height: 50%;
+                }
+
+                .profile__posts-container {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: end;
+                }
+
+                .profile__post {
+                    border: 1px solid #ab8484;
+                    display: block;
+                }
+
+                .profile__post-error {
+                    background-color: #BA3F1D;
+                    color: #fff;
                 }
             
             `}</style>

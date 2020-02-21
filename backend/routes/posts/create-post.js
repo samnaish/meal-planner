@@ -31,8 +31,8 @@ module.exports = async (req, res) => {
     try {
 
         const connection = await database.connect();
-        const User = await database.loadModel(connection, 'users', userSchema);
-        const foundUser = User.findOne({
+        const User = database.loadModel(connection, 'users', userSchema);
+        const foundUser = await User.findOne({
             _id: decoded.user._id            
         });
 
@@ -41,16 +41,23 @@ module.exports = async (req, res) => {
                 error: 'no user ID found.'
             });
         }
-
+        
+        console.log('============');
+        console.log('foundUser.posts', foundUser.posts);
+        console.log('============');
+        
         const userPosts = [post, ...(foundUser.posts || [])];
 
-        const updatedUser = await User.update({ _id: decoded.user._id }, { $set: { posts: userPosts } });
-
         console.log('============');
-        console.log('updatedUsed', updatedUser);
+        console.log('userPosts', userPosts);
         console.log('============');
+        
 
-        return res.status(201).send();
+        const {posts} = await User.findOneAndUpdate({ _id: decoded.user._id }, { $set: { posts: userPosts } }, { new: true });
+
+        return res.status(200).json({
+            posts
+        });
 
 
     } catch (error) {
