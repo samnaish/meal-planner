@@ -49,6 +49,11 @@
             "dest": "backend/routes/users/list.js"
         },
         {
+            "src": "/api/users/posts",
+            "methods": ["POST"],
+            "dest": "backend/routes/posts/create-post.js"
+        },
+        {
             "src": "/api/(.*)",
             "methods": ["GET", "POST", "PUT", "DELETE"],
             "dest": "backend/routes/$1"
