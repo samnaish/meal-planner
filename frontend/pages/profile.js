@@ -233,6 +233,33 @@ const ProfilePage = ({}) => {
                     padding: 2px;
                     border: 1px solid #F1BF98;
                 }
+
+                .profile__content {
+                    background-color: #fff;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    border: 1px solid green;
+                    margin: 20px auto;
+                    padding: 10px;
+                    max-height: 50%;
+                }
+
+                .profile__posts-container {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: end;
+                }
+
+                .profile__post {
+                    border: 1px solid #ab8484;
+                    display: block;
+                }
+
+                .profile__post-error {
+                    background-color: #BA3F1D;
+                    color: #fff;
+                }
             
             `}</style>
         </Layout>
