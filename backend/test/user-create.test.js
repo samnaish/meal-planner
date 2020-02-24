@@ -59,7 +59,7 @@ describe('User Create Endpoint', () => {
         mockSave.mockReset();
         mockValidate.mockReset();
     });
-    
+
     describe('when the payload is invalid', () => {
 
         const dummyErrorMessage = 'test error';
@@ -74,7 +74,7 @@ describe('User Create Endpoint', () => {
         beforeEach(() => {
             mockValidate.mockRejectedValue(dummyError);
         });
-        
+
         test('it should respond with a 400', async () => {
             await create(mockReq, mockRes);
             expect(mockRes.status).toHaveBeenCalledWith(400);
@@ -99,7 +99,7 @@ describe('User Create Endpoint', () => {
             mockSave.mockRejectedValue(true);
 
         });
-        
+
         test('it should respond with a 500 status', async () => {
             await create(mockReq, mockRes);
             expect(mockRes.status).toHaveBeenCalledWith(500);
@@ -125,4 +125,4 @@ describe('User Create Endpoint', () => {
 
     });
 
-});
+}); 

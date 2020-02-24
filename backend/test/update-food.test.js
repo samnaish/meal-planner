@@ -131,8 +131,6 @@ describe("Recipe Update Endpoint", () => {
             expect(mockRes.status).toHaveBeenCalledWith(500);
         })
 
-        // it tests something
-
     });
 
-});
+}); 
