@@ -82,17 +82,26 @@ const ProfilePage = ({}) => {
                                 {errors.post && <span className="profile__post-error">Post must have content</span>}
                                 <button className="profile__post-button" disabled={submitting} type="submit">Post</button>
                             </form>
-                                <div className="profile__post-board">
-                                    {
-                                        posts.map((item, index) => {
-                                            return (
-                                                <div className="profile__post" key={index}>
-                                                    <span className="">{item}</span>
-                                                </div>
-                                            )
-                                        })
-                                    }
-                                </div>
+                            
+                            {
+                                submitting 
+                                    ? <Loader />
+                                    : (
+                                        <div className="profile__post-board">
+                                            {
+                                                posts.map((item, index) => {
+                                                    return (
+                                                        <div className="profile__post" key={index}>
+                                                            <span className="">{item}</span>
+                                                        </div>
+                                                    )
+                                                })
+                                            }
+                                        </div>
+                                    )
+                            }
+
+                            
                         </Fragment>
                     ) 
                 }
@@ -231,6 +240,33 @@ const ProfilePage = ({}) => {
                     margin: 5px 0;
                     padding: 2px;
                     border: 1px solid #F1BF98;
+                }
+
+                .profile__content {
+                    background-color: #fff;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    border: 1px solid green;
+                    margin: 20px auto;
+                    padding: 10px;
+                    max-height: 50%;
+                }
+
+                .profile__posts-container {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: end;
+                }
+
+                .profile__post {
+                    border: 1px solid #ab8484;
+                    display: block;
+                }
+
+                .profile__post-error {
+                    background-color: #BA3F1D;
+                    color: #fff;
                 }
             
             `}</style>
