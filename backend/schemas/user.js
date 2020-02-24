@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
+const uuid = require('uuid');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema ({
@@ -30,9 +31,20 @@ const userSchema = new Schema ({
         type: String
     },
     posts: {
-        ninlength: [8, 'Please ensure your post is at least 8 characters long'],
         type: [{
-            type: String
+            id: {
+                type: String,
+                default: () => uuid.v4()
+            },
+            message: {
+                type: String,
+                minlength: [8, 'Please ensure your post is at least 8 characters long'],
+                required: true
+            },
+            datestamp: {
+                type: String,
+                default: () => Date.now()
+            }
         }]
     }
 });

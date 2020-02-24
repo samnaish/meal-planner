@@ -9,9 +9,6 @@ const userSchema = require('../../schemas/user');
 module.exports = async (req, res) => {
     const sessionToken = req.headers['x-sessiontoken'];
     const { post } = req.body;
-    console.log('============');
-    console.log('hello this is my user post');
-    console.log('============');
     
     if (!sessionToken) {
         return res.status(400).json({
@@ -42,16 +39,7 @@ module.exports = async (req, res) => {
             });
         }
         
-        console.log('============');
-        console.log('foundUser.posts', foundUser.posts);
-        console.log('============');
-        
-        const userPosts = [post, ...(foundUser.posts || [])];
-
-        console.log('============');
-        console.log('userPosts', userPosts);
-        console.log('============');
-        
+        const userPosts = [post, ...(foundUser.posts || [])];     
 
         const {posts} = await User.findOneAndUpdate({ _id: decoded.user._id }, { $set: { posts: userPosts } }, { new: true });
 

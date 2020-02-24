@@ -12,7 +12,6 @@ const ProfilePage = ({}) => {
     const { register, handleSubmit, errors } = useForm();
     const [posts, setPosts] = useState([]);
     const [submitting, setSubmitting] = useState(false);
-    const [ remove, setRemove ] = useState(false);
 
     useEffect(() => {
         if (!localStorage.getItem('token')) {
@@ -56,6 +55,10 @@ const ProfilePage = ({}) => {
         setSubmitting(false);
     }
 
+    const onPostDelete = async () => {
+
+    }
+
     return (
         <Layout>
             <div className="profile">
@@ -83,17 +86,26 @@ const ProfilePage = ({}) => {
                                 {errors.post && <span className="profile__post-error">Post must have content</span>}
                                 <button className="profile__post-button" disabled={submitting} type="submit">Post</button>
                             </form>
-                                <div className="profile__post-board">
-                                    {
-                                        posts.map((item, index) => {
-                                            return (
-                                                <div className="profile__post" key={index}>
-                                                    <span className="">{item}</span>
-                                                </div>
-                                            )
-                                        })
-                                    }
-                                </div>
+                            
+                            {
+                                submitting 
+                                    ? <Loader />
+                                    : (
+                                        <div className="profile__post-board">
+                                            {
+                                                posts.map((item, index) => {
+                                                    return (
+                                                        <div className="profile__post" key={index}>
+                                                            <span className="">{item}</span>
+                                                        </div>
+                                                    )
+                                                })
+                                            }
+                                        </div>
+                                    )
+                            }
+
+                            
                         </Fragment>
                     ) 
                 }
