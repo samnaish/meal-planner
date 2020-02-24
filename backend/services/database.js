@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+mongoose.set('useFindAndModify', false);
+
 module.exports = {
     connect: () => {
         const connectionString = process.env.NODE_ENV === 'production' 
