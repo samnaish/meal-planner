@@ -39,7 +39,11 @@ module.exports = async (req, res) => {
             });
         }
         
-        const userPosts = [post, ...(foundUser.posts || [])];     
+        const newPost = {
+            message: post
+        };
+
+        const userPosts = [newPost, ...(foundUser.posts || [])];     
 
         const {posts} = await User.findOneAndUpdate({ _id: decoded.user._id }, { $set: { posts: userPosts } }, { new: true });
 

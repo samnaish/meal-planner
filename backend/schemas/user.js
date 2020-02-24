@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
-const uuid = require('uuid');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema ({
@@ -32,10 +31,6 @@ const userSchema = new Schema ({
     },
     posts: {
         type: [{
-            id: {
-                type: String,
-                default: () => uuid.v4()
-            },
             message: {
                 type: String,
                 minlength: [8, 'Please ensure your post is at least 8 characters long'],

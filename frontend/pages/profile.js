@@ -55,8 +55,16 @@ const ProfilePage = ({}) => {
         setSubmitting(false);
     }
 
-    const onPostDelete = async () => {
-
+    const onPostDelete = async (postId) => {
+        const response = await fetch(`/api/users/posts/${postId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-SessionToken': localStorage.getItem('token')
+            }
+        });
+        const { posts } = await response.json();
+        setPosts(posts);
     }
 
     return (
@@ -93,10 +101,11 @@ const ProfilePage = ({}) => {
                                     : (
                                         <div className="profile__post-board">
                                             {
-                                                posts.map((item, index) => {
+                                                posts.map((item) => {
                                                     return (
-                                                        <div className="profile__post" key={index}>
-                                                            <span className="">{item}</span>
+                                                        <div className="profile__post" key={item._id}>
+                                                            {item.message}
+                                                            <button onClick={() => onPostDelete(item._id)} type="button">Delete</button>
                                                         </div>
                                                     )
                                                 })
