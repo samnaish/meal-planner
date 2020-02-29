@@ -30,9 +30,16 @@ const userSchema = new Schema ({
         type: String
     },
     posts: {
-        ninlength: [8, 'Please ensure your post is at least 8 characters long'],
         type: [{
-            type: String
+            message: {
+                type: String,
+                minlength: [8, 'Please ensure your post is at least 8 characters long'],
+                required: true
+            },
+            datestamp: {
+                type: String,
+                default: () => Date.now()
+            }
         }]
     }
 });
