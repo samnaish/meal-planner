@@ -5,7 +5,7 @@ const verify = promisify(jwt.verify);
 const database = require('../../services/database');
 const userSchema = require('../../schemas/user');
 
-module.exports = async () => {
+module.exports = async (req, res) => {
     const { id } = req.query;
     const sessionToken = req.headers['x-sessiontoken'];
     let session = null;
@@ -30,7 +30,7 @@ module.exports = async () => {
         };
         const connection = await database.connect();
         const User = database.loadModel(connection, 'users', userSchema);
-        const foundUser = await User.findOne(userFilter, { posts: true });
+        const foundUser = await User.findOne(userFilter, { posts: true });       
 
         if (!foundUser) {
             return res.status(404).json({
@@ -38,7 +38,10 @@ module.exports = async () => {
             });
         }
 
-        const newPosts = (foundUser.posts || []).filter((post) => post._id !== id );
+        const newPosts = (foundUser.posts || []).filter((post) => {           
+            return post._id.toString() !== id;
+        });
+       
         const updatedUser = await User.findOneAndUpdate(userFilter, { $set: { posts: newPosts } }, { new: true });
 
         return res.json({

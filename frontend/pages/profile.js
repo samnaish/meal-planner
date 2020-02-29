@@ -104,7 +104,7 @@ const ProfilePage = ({}) => {
                                                 posts.map((item) => {
                                                     return (
                                                         <div className="profile__post" key={item._id}>
-                                                            {item.message}
+                                                            <span className="profile__post-message">{item.message}</span>
                                                             <button onClick={() => onPostDelete(item._id)} type="button">Delete</button>
                                                         </div>
                                                     )
