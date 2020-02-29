@@ -10,6 +10,7 @@ jobs:
       - node/with-cache:
           cache-key: backend/package.json
           steps:
+            - run: cd backend
             - run: npm install
             - run: npm test
 workflows:
