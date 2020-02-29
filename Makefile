@@ -1,7 +1,5 @@
+install-backend:
+	cd backend && npm install
 
-
-test:
-	@echo "hello from test"
-
-run: test
-	@echo "hello from run"
+test-backend: install-backend
+	cd backend && npm test
