@@ -2,7 +2,7 @@ import React from 'react';
 
 export default ({ title }) => {
     return (
-        <h3>
+        <h3 className="heading">
             {title}
             <style jsx>
                 {`

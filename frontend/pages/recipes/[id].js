@@ -35,10 +35,10 @@ const RecipePage = ({ dish = { time: {}, ingredients: [] } }) => {
                             <h3 className="recipe__ingredients-heading">Ingredients</h3>
                             <ul className="recipe__ingredients-list">
                                 {
-                                    dish.ingredients.map((item) => {
+                                    dish.ingredients.map((item, index) => {
                                         return (
-                                            <li className="recipe__ingredient">
-                                                <div className="recipe__ingredient-quantity">{item.quantity}<span className="recipe__ingredient-unit">{item.units}</span></div>
+                                            <li className="recipe__ingredient" key={index}>
+                                                <div className="recipe__ingredient-quantity">{item.quantity}<span className="recipe__ingredient-unit">{item.unit}</span></div>
                                                 <div className="recipe__ingredient-info"> {item.name}</div>
                                             </li>
                                         );
