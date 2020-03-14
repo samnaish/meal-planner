@@ -1,6 +1,6 @@
 import React from 'react';
 import fetch from 'isomorphic-unfetch';
-import link from "next/link";
+import Link from "next/link";
 
 import Layout from "../../components/Layout";
 import Heading from "../../components/Heading";
@@ -15,14 +15,14 @@ const UsersPage = ({ results = [] }) => {
                         return (
                             <div className="user__items" key={user._id}>
                                 <Link as={`users/${user._id}`} href="users/[id]">
-                                    <a className="user__list-people">{user.first_name} {user.last_name}</a> 
+                                    <a className="user__list-people">{user.first_name} {user.last_name}</a>
                                 </Link>
                             </div>
                         )
                     })
                 }
             </div>
-        <style>{`
+            <style>{`
 
                 .user__list-container {
                     display: flex;
@@ -67,9 +67,9 @@ const UsersPage = ({ results = [] }) => {
 
 UsersPage.getInitialProps = async ({ req }) => {
     function generateServerSideURL(req) {
-        return req.headers['x-forwarded-proto'] 
+        return req.headers['x-forwarded-proto']
             ? `${req.headers['x-forwarded-proto']}://${req.headers['x-forwarded-host']}`
-            :'http://localhost:3000';
+            : 'http://localhost:3000';
     }
     const baseUrl = req ? generateServerSideURL(req) : '';
 
@@ -82,5 +82,3 @@ UsersPage.getInitialProps = async ({ req }) => {
 }
 
 export default UsersPage;
-
-
