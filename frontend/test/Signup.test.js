@@ -5,7 +5,6 @@ import Signup from '../components/Signup';
 
 describe("Signup", () => {
 
-    test("should render corectly", () => {
         const wrapper = shallow(<Signup />);
         expect(wrapper.find('.signin__form')).toHaveLength(1);
         expect(wrapper.find('.signin__input')).toHaveLength(5);

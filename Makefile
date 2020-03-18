@@ -1,7 +1,17 @@
+install-backend:
+	@cd backend && npm install
 
+test-backend: install-backend
+	@cd backend && npm test
 
-test:
-	@echo "hello from test"
+install-frontend:
+	@cd frontend && npm install
 
-run: test
-	@echo "hello from run"
+test-frontend: install-frontend
+	@cd frontend && npm test
+
+test-e2e:
+	@cd frontend && npm run cypress:open
+
+start:
+	@npx now dev
