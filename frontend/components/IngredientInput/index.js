@@ -1,69 +1,62 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
-export default ({ id }) => {
-    const elId = `input-${id}`;
+export default ({ index, register, onRemove }) => {
     return (
-        <div className="input">
-            <div className="input__ingredient">
-                <label htmlFor={elId} className="input__label">Ingredient: {id}</label>
-                <input id={elId} className="input__box" type="text" />
+        <Fragment>
+            <div className="ingredient">
+                <input
+                    name={`ingredients[${index}].name`}
+                    className="ingredient__input"
+                    type="text"
+                    ref={register()}
+                />
+                <div className="ingredient__measurement">
+                    <input name={`ingredients[${index}].quantity`} className="ingredient__input" type="number" ref={register()} />
+                    <select name={`ingredients[${index}].unit`} className="ingredient__input" ref={register()}>
+                        <option value="">None</option>
+                        <option value="grams">Grams</option>
+                        <option value="tbsp">TBSP</option>
+                        <option value="ml">ML</option>
+                    </select>
+                    <button onClick={() => onRemove(index)} className="ingredient__remove" title="Remove ingredient" type="button">X</button>
+                </div>
+
             </div>
-            <div className="input__measurement">
-                <label htmlFor={`${elId}-unit`} className="input__label">Unit: </label>
-                <select id={`${elId}-unit`} className="input__option-box" name="measurement">
-                    <option value="">None</option>
-                    <option value="grams">Grams</option>
-                    <option value="tbsp">TBSP</option>
-                    <option value="ml">ML</option>
-                </select>
-            </div> 
-
-            <style jsx>{`
-
-                .input {
-                    padding: 10px 0;
-                    margin: 5px 10px;
-                    flex-wrap: wrap;
-                }
-
-                .input__label {
-                    display: inline-block;
-                    min-width: 100px;
-                    margin: 10px 0;
-                }
-
-                .input__box, input__option-box {
+            <style jsx>
+                {`
+                .ingredient__input {
+                    display: block;
+                    width: 100%;
                     height: 30px;
-                    min-width: 200px;
-                    padding: 5px;
-                    border: 1px solid lightgrey;
-                    border-radius: 4px;
-                    transition: border-color 0.3s ease;
+                    border-radius: 5px;
+                    border: 1px solid #CCC;
+                    margin-bottom: 5px;
                 }
 
-                @media screen and (max-width: 450px) {
-                    
-                    .input__ingredient {
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-                    }
-
-                    .input__measurement {
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-                    }
-
-                    .input__label {
-                        text-align: center;
-                    }
+                .ingredient__measurement {
+                    display: flex;
+                    flex-direction: row;
+                    margin-bottom: 25px;
                 }
 
-                
+                .ingredient__measurement .ingredient__input {
+                    display: inline-block;
+                    width: 40%;
+                    margin-right: 5px;
+                }
 
-            `}</style>
-        </div>
-        
+                .ingredient__remove {
+                    cursor: pointer;
+                    height: 30px;
+                    width: 30px;
+                    border-radius: 5px;
+                    border: 1px solid #CCC;
+                    background-color: #F44;
+                    color: white;
+                }
+                `}
+            </style>
+        </Fragment>
+
     );
 }

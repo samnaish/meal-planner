@@ -8,12 +8,12 @@ import SessionContext from '../../contexts/session';
 
 
 // login
-    // success => save token in localStorage
-    // redirect user to recipes
+// success => save token in localStorage
+// redirect user to recipes
 // recipes
-    // Layout at the top of the page
-        // Layout has a useEffect
-        // that useEffect says look in localStorage
+// Layout at the top of the page
+// Layout has a useEffect
+// that useEffect says look in localStorage
 
 export default ({ children }) => {
     const [session, setSession] = useState(null);

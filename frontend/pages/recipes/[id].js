@@ -1,15 +1,15 @@
 import React from 'react';
+import Link from "next/link";
 
 import fetch from 'isomorphic-unfetch';
 import Layout from "../../components/Layout";
 import Container from "../../components/Container";
 
 const RecipePage = ({ dish = { time: {}, ingredients: [] } }) => {
-    
     return (
         <Layout>
             <Container>
-                <div className="recipe">  
+                <div className="recipe">
                     <div className="recipe__header">
                         <h1 className="recipe__title">{dish.name}</h1>
                         <div className="recipe__details">
@@ -29,15 +29,24 @@ const RecipePage = ({ dish = { time: {}, ingredients: [] } }) => {
                                 <span>servings</span>
                             </div>
                         </div>
+                        {
+                            dish.author && (
+                                <div className="recipe__author-container">
+                                    <Link as={`/users/${dish.author._id}`} href="/users/[id]">
+                                        <a className="recipe__author-anchor">By: {dish.author.first_name} {dish.author.last_name}</a>
+                                    </Link>
+                                </div>
+                            )
+                        }
                     </div>
                     <div className="recipe__content">
                         <div className="recipe__ingredients">
                             <h3 className="recipe__ingredients-heading">Ingredients</h3>
                             <ul className="recipe__ingredients-list">
                                 {
-                                    dish.ingredients.map((item) => {
+                                    dish.ingredients.map((item, index) => {
                                         return (
-                                            <li className="recipe__ingredient">
+                                            <li className="recipe__ingredient" key={index}>
                                                 <div className="recipe__ingredient-quantity">{item.quantity}<span className="recipe__ingredient-unit">{item.units}</span></div>
                                                 <div className="recipe__ingredient-info"> {item.name}</div>
                                             </li>
@@ -48,12 +57,12 @@ const RecipePage = ({ dish = { time: {}, ingredients: [] } }) => {
                         </div>
                         <div className="recipe__image-container">
                             <a className="recipe__save-link" href="#">Save Recipe</a>
-                            <img className="recipe__image" src={dish.image}/>
+                            <img className="recipe__image" src={dish.image} />
                         </div>
                     </div>
                 </div>
             </Container>
-            
+
             <style jsx>{`
 
                 .recipe {
@@ -83,6 +92,16 @@ const RecipePage = ({ dish = { time: {}, ingredients: [] } }) => {
 
                 .recipe__detail-focus {
                     padding: 0 5px;
+                }
+
+                .recipe__author-container {
+                    text-align: center;
+                    margin: 10px auto;
+                }
+
+                .recipe__author-anchor {
+                    color: #222;
+                    text-decoration: none;
                 }
 
                 .recipe__content {
@@ -158,7 +177,7 @@ const RecipePage = ({ dish = { time: {}, ingredients: [] } }) => {
                     padding-right: 15px;
                 }
 
-                .recipe__image { 
+                .recipe__image {
                     object-fit: cover;
                     position: absolute;
                     left: -15px;
@@ -201,6 +220,7 @@ RecipePage.getInitialProps = async ({ req, query }) => {
     console.log('`${baseUrl}/api/food/${query.id}', `${baseUrl}/api/food/${query.id}`);
     const foodRequest = await fetch(`${baseUrl}/api/food/${query.id}`);
     const { dish } = await foodRequest.json();
+    // const { author } = await foodRequest.json();
     return {
         dish
     }

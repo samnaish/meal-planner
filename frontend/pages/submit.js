@@ -1,16 +1,16 @@
 import React from 'react';
 
 import Layout from "../components/Layout";
-import Submit from "../components/Submit";
+import AddRecipeForm from "../components/AddRecipeForm";
 
 export default () => {
     return (
         <Layout>
             <div className="submit__background">
                 <h1 className="submit__title">Add a Recipe</h1>
-                <Submit />
+                <AddRecipeForm />
             </div>
-                <style jsx>{`
+            <style jsx>{`
 
                     .submit__background {
                         display: flex;
