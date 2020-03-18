@@ -17,13 +17,17 @@ const IngredientSchema = new Schema({
 }, { _id: false });
 
 const recipe = new Schema({
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
     name: {
         required: [true, 'Please provide a name.'],
         type: String
     },
     image: {
         required: [true, 'Please provide a dish image.'],
-        type: String       
+        type: String
     },
     servings: {
         required: [true, 'Please provide a servings count.'],

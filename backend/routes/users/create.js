@@ -4,7 +4,7 @@ const userSchema = require('../../schemas/user');
 module.exports = async (req, res) => {
     try {
         const connection = await database.connect();
-        const User = database.loadModel(connection, 'users', userSchema);
+        const User = database.loadModel(connection, 'User', userSchema);
         const potentialUser = new User(req.body);
 
         try {
@@ -35,7 +35,7 @@ module.exports = async (req, res) => {
 
     } catch (error) {
         console.log('error', error);
-        
+
         return res.status(500).json({
             error: 'Unexpected error, Please try again later.'
         })

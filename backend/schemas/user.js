@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema ({
+const userSchema = new Schema({
     email: {
         required: true,
         type: String,
@@ -41,7 +41,8 @@ const userSchema = new Schema ({
                 default: () => Date.now()
             }
         }]
-    }
+    },
+
 });
 
 module.exports = userSchema;

@@ -4,8 +4,8 @@ const userSchema = require('../../schemas/user');
 module.exports = async (req, res) => {
     const { id } = req.query;
     try {
-        const connection  = await database.connect();
-        const User = database.loadModel(connection, 'user', userSchema)
+        const connection = await database.connect();
+        const User = database.loadModel(connection, 'User', userSchema)
         const account = await User.findOne({ _id: id });
 
         if (!account) {

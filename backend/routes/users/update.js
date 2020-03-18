@@ -2,19 +2,19 @@ const database = require('../../services/database');
 const userSchema = require('../../schemas/user');
 // Connects to database - done
 // loads database model - done
-    // Does the user ID match the query parsed in? - done
-        //If not, respond with 404. - done
-    //Is the parsed data valid.
-        //If not, respond with 400 (json error response).
-    // try to update user record
+// Does the user ID match the query parsed in? - done
+//If not, respond with 404. - done
+//Is the parsed data valid.
+//If not, respond with 400 (json error response).
+// try to update user record
 
-    //If any more errors - return 500 status json response
+//If any more errors - return 500 status json response
 
 module.exports = async (req, res) => {
-    try { 
+    try {
         const query = { _id: req.query.id };
         const connection = await database.connect();
-        const User = database.loadModel(connection, 'users', userSchema);
+        const User = database.loadModel(connection, 'User', userSchema);
         const foundUser = await User.findOne(query);
 
         if (!foundUser) {
@@ -43,5 +43,5 @@ module.exports = async (req, res) => {
             error: 'Unexpected error, Please try again later.'
         })
     }
-    
+
 }

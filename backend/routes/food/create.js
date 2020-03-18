@@ -1,12 +1,27 @@
 const database = require('../../services/database');
+const authentication = require('../../services/authentication');
 const recipeSchema = require('../../schemas/recipe');
+const userSchema = require('../../schemas/user');
+
 
 module.exports = async (req, res) => {
+    const sessionToken = req.headers['x-sessiontoken'];
+
     try {
+        const session = await authentication.decodeToken(sessionToken);
+        if (!session) {
+            return res.status(400).json({
+                error: 'Please authenticate.'
+            });
+        }
+
         const connection = await database.connect();
         const Recipe = database.loadModel(connection, 'recipe', recipeSchema);
 
-        const recipeObject = new Recipe(req.body);
+        const recipeObject = new Recipe({
+            ...req.body,
+            author: session.user._id
+        });
 
         try {
             await recipeObject.validate();
@@ -40,5 +55,5 @@ module.exports = async (req, res) => {
             error: "Unexpected error. Please try again later."
         })
     }
-    
+
 };
