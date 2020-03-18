@@ -47,7 +47,8 @@ const RecipePage = ({ dish = { time: {}, ingredients: [] } }) => {
                                     dish.ingredients.map((item, index) => {
                                         return (
                                             <li className="recipe__ingredient" key={index}>
-                                                <div className="recipe__ingredient-quantity">{item.quantity}<span className="recipe__ingredient-unit">{item.units}</span></div>
+
+                                                <div className="recipe__ingredient-quantity">{item.quantity}<span className="recipe__ingredient-unit">{item.unit}</span></div>
                                                 <div className="recipe__ingredient-info"> {item.name}</div>
                                             </li>
                                         );

@@ -1,17 +1,40 @@
 version: 2.1
 orbs:
   node: circleci/node@1.1.6
+  cypress: cypress-io/cypress@1.16.1
 jobs:
-  build-and-test:
+  build-and-test-backend:
     executor:
       name: node/default
     steps:
       - checkout
       - node/with-cache:
+          cache-key: backend/package.json
           steps:
-            - run: npm install
-            - run: npm test
+            - run: make test-backend
+  build-and-test-frontend:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - node/with-cache:
+          cache-key: frontend/package.json
+          steps:
+            - run: make test-frontend
+  e2e-test:
+    executor:
+      name: cypress/default
+    steps: 
+      - checkout
 workflows:
-    build-and-test:
-      jobs:
-        - build-and-test
+  test:
+    jobs:
+      - build-and-test-backend
+      - build-and-test-frontend
+      - cypress/run:
+          start: make start
+          wait-on: http://localhost:3000
+          requires:
+            - build-and-test-backend
+            - build-and-test-frontend
+            
