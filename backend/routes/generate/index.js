@@ -5,15 +5,15 @@ const DEFAULT_DAYS = 4;
 
 module.exports = async (req, res) => {
 
-    const { days, ignore = '' , vegetarian } = req.query;
+    const { days, ignore = '', vegetarian } = req.query;
     const numDays = parseInt(days, 10);
     const isVegetarian = vegetarian === 'true';
-    
+
     const ignoreArray = ignore
         .split(',')
         .filter(id => id.length > 0)
         .map(id => database.toObjectId(id));
-    
+
     try {
 
         const matchConditions = { _id: { $nin: ignoreArray } };
@@ -21,7 +21,7 @@ module.exports = async (req, res) => {
             matchConditions.vegetarian = true;
         }
 
-        const connection  = await database.connect();
+        const connection = await database.connect();
         const Recipe = database.loadModel(connection, 'recipe', RecipeSchema);
         const results = await Recipe.aggregate([
             { $match: matchConditions },
@@ -32,12 +32,12 @@ module.exports = async (req, res) => {
         return res.json({
             results
         });
-    
+
     } catch (error) {
         console.error('Error in generate API', error);
         res.status(500).json({
             error: 'Unexpected error, Please try again later.'
         })
     }
-    
+
 }

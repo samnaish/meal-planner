@@ -42,7 +42,12 @@ const userSchema = new Schema({
             }
         }]
     },
-
+    friends: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "User"
+        }
+    ]
 });
 
 module.exports = userSchema;

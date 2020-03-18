@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import fetch from 'isomorphic-unfetch';
@@ -30,7 +30,7 @@ const PlanPage = () => {
 
     const removeLike = (recipe) => {
         if (liked[recipe._id]) {
-            const newLiked = {...liked};
+            const newLiked = { ...liked };
             delete newLiked[recipe._id];
             setLiked(newLiked);
         }
@@ -44,7 +44,7 @@ const PlanPage = () => {
         const { results } = await response.json();
         const newResults = [...results, ...Object.values(liked)];
         setResults(newResults);
-        setIsLoading(false);        
+        setIsLoading(false);
     }
 
     const generateIngredients = async () => {
@@ -53,22 +53,22 @@ const PlanPage = () => {
         const { ingredients } = await response.json();
         setIngredients(ingredients);
     }
-    
+
     return (
         <Layout>
             <h1>plan my week</h1>
             <div className="generate">
                 <span>Use our easy generator to plan your week!</span>
                 <form className="generate__form" onSubmit={handleSubmit(generateMealPlan)}>
-                    <Range name="days" min="1" max="7" step="1" ref={register}/>
-                    <Checkbox name="vegetarian" label="Vegetarian dishes" ref={register}/>
+                    <Range name="days" min="1" max="7" step="1" ref={register} />
+                    <Checkbox name="vegetarian" label="Vegetarian dishes" ref={register} />
                     <button className="generate__cta" type="submit">Generate!</button>
                 </form>
                 <div className="generate__results">
 
-                    { !isLoading && results.length === 0 && <span>Go ahead and generate your meals!</span> }
-                    
-                    { isLoading && <Loader /> }
+                    {!isLoading && results.length === 0 && <span>Go ahead and generate your meals!</span>}
+
+                    {isLoading && <Loader />}
                     {
                         !isLoading &&
                         results.map((result) => {
@@ -78,13 +78,13 @@ const PlanPage = () => {
                                 <div key={result._id} className={className}>
                                     <Link as={`/recipes/${result._id}`} href="/recipes/[id]">
                                         <a className="generate__anchor">
-                                            <ResultItem image={result.image} name={result.name}/>
+                                            <ResultItem image={result.image} name={result.name} />
                                         </a>
                                     </Link>
                                     <div className="generate__button-container">
                                         {
-                                            isLiked ? <button className="generate__button" onClick={() => removeLike(result)} type="button">Remove</button> : 
-                                            <button className="generate__button" onClick={() => likeItem(result)} type="button">Keep</button>
+                                            isLiked ? <button className="generate__button" onClick={() => removeLike(result)} type="button">Remove</button> :
+                                                <button className="generate__button" onClick={() => likeItem(result)} type="button">Keep</button>
                                         }
                                     </div>
                                 </div>
@@ -99,9 +99,9 @@ const PlanPage = () => {
                         }
                     </div>
                     {
-                        ingredients && <IngredientList ingredients={ingredients}/>
+                        ingredients && <IngredientList ingredients={ingredients} />
                     }
-                        
+
                 </div>
 
             </div>

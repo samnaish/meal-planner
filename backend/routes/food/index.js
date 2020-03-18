@@ -19,5 +19,5 @@ module.exports = async (req, res) => {
             error: 'Unexpected error. Please try again later'
         });
     }
-  
+
 };

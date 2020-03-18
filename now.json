@@ -1,76 +1,115 @@
 {
     "version": 2,
     "name": "meal-planner",
-    "regions": ["lhr1"],
+    "regions": [
+        "lhr1"
+    ],
     "builds": [
         {
             "src": "frontend/next.config.js",
             "use": "@now/next"
         },
         {
-          "src": "backend/**/*.js",
-          "use": "@now/node"
+            "src": "backend/**/*.js",
+            "use": "@now/node"
         }
     ],
     "routes": [
         {
             "src": "/api/food/(.+)",
-            "methods": ["GET"],
+            "methods": [
+                "GET"
+            ],
             "dest": "backend/routes/food/specific.js?id=$1"
         },
         {
             "src": "/api/food/",
-            "methods": ["POST"],
+            "methods": [
+                "POST"
+            ],
             "dest": "backend/routes/food/create.js"
         },
         {
             "src": "/api/food/(.*)",
-            "methods": ["GET", "POST", "PUT", "DELETE"],
+            "methods": [
+                "GET",
+                "POST",
+                "PUT",
+                "DELETE"
+            ],
             "dest": "backend/routes/food/$1"
         },
         {
             "src": "/api/users/([a-f0-9]{24})$",
-            "methods": ["GET"],
+            "methods": [
+                "GET"
+            ],
             "dest": "backend/routes/users/specific.js?id=$1"
         },
         {
             "src": "/api/users/([a-f0-9]{24})$",
-            "methods": ["PUT"],
+            "methods": [
+                "PUT"
+            ],
             "dest": "backend/routes/users/update.js?id=$1"
         },
         {
             "src": "/api/users/",
-            "methods": ["POST"],
+            "methods": [
+                "POST"
+            ],
             "dest": "backend/routes/users/create.js"
         },
         {
             "src": "/api/users/",
-            "methods": ["GET"],
+            "methods": [
+                "GET"
+            ],
             "dest": "backend/routes/users/list.js"
         },
         {
             "src": "/api/users/posts",
-            "methods": ["GET"],
+            "methods": [
+                "GET"
+            ],
             "dest": "backend/routes/posts/get-posts.js"
         },
         {
             "src": "/api/users/posts",
-            "methods": ["POST"],
+            "methods": [
+                "POST"
+            ],
             "dest": "backend/routes/posts/create-post.js"
         },
         {
             "src": "/api/users/posts/([0-9a-f]{24})$",
-            "methods": ["DELETE"],
+            "methods": [
+                "DELETE"
+            ],
             "dest": "backend/routes/posts/delete-post.js?id=$1"
         },
         {
+            "src": "/api/profile/friend",
+            "methods": [
+                "POST"
+            ],
+            "dest": "backend/routes/profile/addFriend.js"
+        },
+        {
             "src": "/api/(.*)",
-            "methods": ["GET", "POST", "PUT", "DELETE"],
+            "methods": [
+                "GET",
+                "POST",
+                "PUT",
+                "DELETE"
+            ],
             "dest": "backend/routes/$1"
         },
         {
             "src": "/(.*)",
-            "methods": ["GET"],
+            "methods": [
+                "GET"
+            ],
             "dest": "frontend/$1"
         }
     ],
